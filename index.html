@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MarmaraMedyaDrone | Premium Havadan Çekim</title>
+    <title>MarmaraMedyaDrone | Profesyonel Havadan Çekim</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -32,8 +32,8 @@
 
         .reveal {
             opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.9s cubic-bezier(0.16, 1, 0.3, 1);
+            transform: translateY(20px);
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .reveal.active {
             opacity: 1;
@@ -57,6 +57,11 @@
             z-index: 1;
         }
 
+        /* Mobil kaydırma optimizasyonu */
+        html {
+            scroll-padding-top: 100px;
+        }
+
         ::-webkit-scrollbar {
             width: 6px;
         }
@@ -66,9 +71,6 @@
         ::-webkit-scrollbar-thumb {
             background: #27272a; 
             border-radius: 3px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #3f3f46; 
         }
     </style>
 </head>
@@ -198,6 +200,7 @@
                         <div class="absolute inset-0 bg-gradient-to-tr from-black via-transparent to-black z-10 opacity-70"></div>
                         <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?q=80&w=1200&auto=format&fit=crop" 
                              alt="Drone Operatörü" 
+                             loading="lazy"
                              class="w-full h-full object-cover filter grayscale contrast-125 group-hover:grayscale-0 transition duration-700 ease-in-out scale-105 group-hover:scale-100">
                         <div class="absolute bottom-8 left-8 z-20">
                             <div class="bg-black/90 backdrop-blur-md border border-zinc-800 p-5 shadow-2xl">
@@ -277,19 +280,19 @@
             </div>
 
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Video 1 -->
+                <!-- Video 1 - Lazy loading ile performans artırıldı -->
                 <div class="bg-black border border-zinc-800/80 p-2 rounded-sm reveal glow-box shadow-2xl overflow-hidden">
-                    <iframe src="https://www.instagram.com/p/DdHXzP2MwPX/embed" width="100%" height="520" frameborder="0" scrolling="no" allowtransparency="true" class="bg-black rounded-sm"></iframe>
+                    <iframe src="https://www.instagram.com/p/DdHXzP2MwPX/embed" loading="lazy" width="100%" height="520" frameborder="0" scrolling="no" allowtransparency="true" class="bg-black rounded-sm"></iframe>
                 </div>
 
                 <!-- Video 2 -->
                 <div class="bg-black border border-zinc-800/80 p-2 rounded-sm reveal glow-box shadow-2xl overflow-hidden">
-                    <iframe src="https://www.instagram.com/p/DceYBxNMOp8/embed" width="100%" height="520" frameborder="0" scrolling="no" allowtransparency="true" class="bg-black rounded-sm"></iframe>
+                    <iframe src="https://www.instagram.com/p/DceYBxNMOp8/embed" loading="lazy" width="100%" height="520" frameborder="0" scrolling="no" allowtransparency="true" class="bg-black rounded-sm"></iframe>
                 </div>
 
                 <!-- Video 3 -->
                 <div class="bg-black border border-zinc-800/80 p-2 rounded-sm reveal glow-box shadow-2xl overflow-hidden">
-                    <iframe src="https://www.instagram.com/p/DZGC_zZMrOM/embed" width="100%" height="520" frameborder="0" scrolling="no" allowtransparency="true" class="bg-black rounded-sm"></iframe>
+                    <iframe src="https://www.instagram.com/p/DZGC_zZMrOM/embed" loading="lazy" width="100%" height="520" frameborder="0" scrolling="no" allowtransparency="true" class="bg-black rounded-sm"></iframe>
                 </div>
             </div>
             
@@ -408,8 +411,8 @@
         };
 
         const revealOptions = {
-            threshold: 0.1,
-            rootMargin: "0px 0px -40px 0px"
+            threshold: 0.05,
+            rootMargin: "0px 0px -20px 0px"
         };
 
         const revealObserver = new IntersectionObserver(revealCallback, revealOptions);
