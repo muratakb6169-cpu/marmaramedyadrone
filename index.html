@@ -292,7 +292,7 @@
                         <a href="https://wa.me/905524010769?text=Merhaba,%203.000%20TL'lik%20Ham%20Çekim%20Paketi%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" class="w-full block text-center border-2 border-slate-800 hover:bg-slate-800 hover:text-white text-slate-800 py-3.5 text-[11px] font-extrabold uppercase tracking-widest transition-all rounded-lg mt-auto">Seç</a>
                     </div>
 
-                    <!-- 2. Paket: Standart Prodüksiyon (Video Butonu Kaldırıldı) -->
+                    <!-- 2. Paket: Standart Prodüksiyon -->
                     <div class="bg-white rounded-2xl flex flex-col p-8 shadow-xl border-2 border-sky-500 relative">
                         <h4 class="text-slate-900 font-bold text-2xl mb-2">Standart Prodüksiyon</h4>
                         <p class="text-slate-500 text-xs mb-6 h-8 font-medium">Video ve fotoğraf kurgu montaj dahil.</p>
@@ -325,12 +325,17 @@
                         </ul>
                         
                         <div class="flex flex-col gap-3 mt-auto">
-                            <!-- Örnek Projeyi Gör Butonu Buradan Kaldırıldı -->
+                            <!-- Standart Paket İçin Yeni Yerel Video Butonu -->
+                            <button onclick="openVideoLightbox('standart-paket-ornek.mp4', 'local')" class="w-full flex items-center justify-center gap-2 text-center text-slate-600 hover:text-sky-600 py-3 text-[11px] font-black uppercase tracking-[0.2em] transition-all bg-white hover:bg-sky-50 rounded-lg border-2 border-slate-300 hover:border-sky-500 shadow-sm">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                Örnek Projeyi Gör
+                            </button>
+
                             <a href="https://wa.me/905524010769?text=Merhaba,%205.000%20TL'lik%20Standart%20Prodüksiyon%20Paketi%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" class="w-full block text-center border-2 border-slate-800 hover:bg-slate-800 hover:text-white text-slate-800 py-3.5 text-[11px] font-extrabold uppercase tracking-widest transition-all rounded-lg">Seç</a>
                         </div>
                     </div>
 
-                    <!-- 3. Paket: Drone Pro (Yeni Embed Linki Eklendi) -->
+                    <!-- 3. Paket: Drone Pro -->
                     <div class="bg-slate-900 rounded-2xl flex flex-col p-8 shadow-2xl border-2 border-yellow-500 relative transform lg:-translate-y-2">
                         <div class="absolute top-0 right-0 bg-yellow-500 text-black text-[10px] font-extrabold uppercase tracking-widest px-4 py-1.5 rounded-bl-xl rounded-tr-xl">Premium</div>
                         <h4 class="text-white font-bold text-2xl mb-2">Drone Pro Paketi</h4>
@@ -368,8 +373,8 @@
                         </ul>
                         
                         <div class="flex flex-col gap-3 mt-auto">
-                            <!-- Yeni Embed Linki Buraya Eklendi -->
-                            <button onclick="openVideoLightbox('https://www.instagram.com/reel/DceYBxNMOp8/embed')" class="w-full flex items-center justify-center gap-2 text-center text-slate-300 hover:text-yellow-500 py-3 text-[11px] font-black uppercase tracking-[0.2em] transition-all bg-slate-900 hover:bg-slate-800 rounded-lg border-2 border-slate-500 hover:border-yellow-500 shadow-sm">
+                            <!-- Yerel Video Tetikleyici Buton -->
+                            <button onclick="openVideoLightbox('pro-paket-ornek.mp4', 'local')" class="w-full flex items-center justify-center gap-2 text-center text-slate-300 hover:text-yellow-500 py-3 text-[11px] font-black uppercase tracking-[0.2em] transition-all bg-slate-900 hover:bg-slate-800 rounded-lg border-2 border-slate-500 hover:border-yellow-500 shadow-sm">
                                 <svg class="w-4 h-4 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                 Örnek Projeyi Gör
                             </button>
@@ -411,7 +416,7 @@
         </div>
     </div>
 
-    <!-- TAM EKRAN LİGHTBOX VİDEO OYNATICI -->
+    <!-- TAM EKRAN LİGHTBOX VİDEO OYNATICI (Güncellendi) -->
     <div id="videoLightbox" class="fixed inset-0 z-[200] hidden bg-black/95 backdrop-blur-sm flex flex-col items-center justify-center p-4 sm:p-8">
         
         <!-- Kapatma Butonu -->
@@ -429,8 +434,11 @@
                 </svg>
             </div>
             
-            <!-- Dinamik İframe -->
-            <iframe id="lightboxIframe" src="" class="w-full h-full border-0 relative z-10" allowfullscreen></iframe>
+            <!-- Dinamik İframe (Instagram bağlantıları için) -->
+            <iframe id="lightboxIframe" src="" class="w-full h-full border-0 relative z-10 hidden" allowfullscreen></iframe>
+            
+            <!-- Dinamik HTML5 Video (Sizin yüklediğiniz yerel MP4 için) -->
+            <video id="lightboxVideo" src="" class="w-full h-full relative z-10 hidden object-cover" controls playsinline></video>
         </div>
     </div>
 
@@ -519,30 +527,40 @@
         }
 
         // Tam Ekran Video Lightbox
-        function openVideoLightbox(videoUrl) {
+        function openVideoLightbox(mediaUrl, type = 'iframe') {
             const lightbox = document.getElementById('videoLightbox');
             const iframe = document.getElementById('lightboxIframe');
+            const video = document.getElementById('lightboxVideo');
             
-            // Parametreleri temizleyip video kaynağını ayarla
-            iframe.src = videoUrl;
+            if (type === 'local') {
+                iframe.classList.add('hidden');
+                iframe.src = '';
+                video.classList.remove('hidden');
+                video.src = mediaUrl;
+                video.play();
+            } else {
+                video.classList.add('hidden');
+                video.pause();
+                video.src = '';
+                iframe.classList.remove('hidden');
+                iframe.src = mediaUrl;
+            }
             
-            // Lightbox'ı göster
             lightbox.classList.remove('hidden');
-            // Alttaki sayfanın kaymasını engelle
             document.body.style.overflow = 'hidden'; 
         }
 
         function closeVideoLightbox() {
             const lightbox = document.getElementById('videoLightbox');
             const iframe = document.getElementById('lightboxIframe');
+            const video = document.getElementById('lightboxVideo');
             
-            // Videoyu durdurmak için iframe src'sini temizle
             iframe.src = '';
+            video.pause();
+            video.src = '';
             
-            // Lightbox'ı gizle
             lightbox.classList.add('hidden');
             
-            // Eğer Paketler modalı açık değilse kaydırmayı geri aç
             if(document.getElementById('paketlerModal').classList.contains('hidden')) {
                 document.body.style.overflow = '';
             }
