@@ -14,12 +14,12 @@
     
     <style>
         :root {
-            --accent: #3b82f6; 
+            --accent: #0284c7; /* Sky blue accent */
         }
         body { 
             font-family: 'Inter', sans-serif;
-            background-color: #000;
-            color: #fff;
+            background-color: #f0f9ff; /* Sky-50 - Very light sky blue background */
+            color: #0f172a; /* Slate-900 - Dark text for readability */
         }
 
         /* Yumuşak Giriş Animasyonu */
@@ -58,12 +58,12 @@
             position: absolute;
             top: 0; left: 0; right: 0; bottom: 0;
             border-radius: inherit;
-            background: radial-gradient(circle at top left, rgba(59, 130, 246, 0.15), transparent 70%);
+            background: radial-gradient(circle at top left, rgba(14, 165, 233, 0.2), transparent 70%); /* Sky-500 light glow */
             z-index: 0;
             pointer-events: none;
         }
         .glow-box-gold::before {
-            background: radial-gradient(circle at top left, rgba(234, 179, 8, 0.15), transparent 70%);
+            background: radial-gradient(circle at top left, rgba(234, 179, 8, 0.2), transparent 70%);
         }
         .glow-box > * {
             position: relative;
@@ -72,16 +72,15 @@
 
         /* İnce Kenarlık */
         .glass-card {
-            background: rgba(10, 10, 10, 0.6);
-            border: 1px solid rgba(255, 255, 255, 0.08);
-            backdrop-filter: blur(10px);
+            background: rgba(255, 255, 255, 0.7); /* White transparent for glass effect on light bg */
+            border: 1px solid rgba(14, 165, 233, 0.2); /* Sky-500 subtle border */
+            backdrop-filter: blur(12px);
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03); /* Subtle shadow for depth */
         }
         .glass-card:hover {
-            border-color: rgba(59, 130, 246, 0.3);
-            background: rgba(15, 15, 15, 0.8);
-        }
-        .glass-card-gold:hover {
-            border-color: rgba(234, 179, 8, 0.3);
+            border-color: rgba(14, 165, 233, 0.5); /* Sky-500 stronger border on hover */
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
         }
 
         html {
@@ -89,43 +88,44 @@
         }
 
         ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #000; }
-        ::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 3px; }
-        ::-webkit-scrollbar-thumb:hover { background: #374151; }
+        ::-webkit-scrollbar-track { background: #f0f9ff; }
+        ::-webkit-scrollbar-thumb { background: #bae6fd; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #7dd3fc; }
     </style>
 </head>
-<body class="antialiased selection:bg-blue-600 selection:text-white flex flex-col min-h-screen">
+<body class="antialiased selection:bg-sky-500 selection:text-white flex flex-col min-h-screen">
 
-    <header class="fixed w-full top-0 z-50 glass-nav transition-all duration-300 auto-animate-header">
+    <!-- HEADER -->
+    <header class="fixed w-full top-0 z-50 transition-all duration-300 auto-animate-header bg-white/80 backdrop-blur-md border-b border-sky-100">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center h-20 sm:h-24">
                 
                 <!-- Logo -->
                 <a href="#home" class="flex-shrink-0 flex items-center gap-3 group">
-                    <div class="w-10 h-10 rounded-full border border-zinc-800 bg-black flex items-center justify-center group-hover:border-blue-500 transition duration-500 shadow-[0_0_15px_rgba(59,130,246,0.1)]">
-                        <svg class="w-5 h-5 text-zinc-300 group-hover:text-blue-500 transition duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <div class="w-10 h-10 rounded-full border border-sky-200 bg-sky-50 flex items-center justify-center group-hover:border-sky-500 transition duration-500 shadow-[0_0_15px_rgba(14,165,233,0.1)]">
+                        <svg class="w-5 h-5 text-sky-600 group-hover:text-sky-500 transition duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
                         </svg>
                     </div>
-                    <span class="font-heading font-bold text-base sm:text-lg tracking-widest text-white uppercase">MarmaraMedyaDrone</span>
+                    <span class="font-heading font-bold text-base sm:text-lg tracking-widest text-slate-800 uppercase">MarmaraMedyaDrone</span>
                 </a>
 
                 <!-- Desktop Menu -->
                 <nav class="hidden md:flex space-x-8 lg:space-x-10 items-center">
-                    <a href="#hakkimizda" class="nav-scroll-link text-[11px] font-semibold uppercase tracking-[0.2em] text-zinc-400 hover:text-white transition duration-300">Hakkımızda</a>
-                    <a href="#hizmetler" class="nav-scroll-link text-[11px] font-semibold uppercase tracking-[0.2em] text-zinc-400 hover:text-white transition duration-300">Hizmetler</a>
-                    <a href="javascript:void(0)" onclick="openPaketlerModal()" class="text-[11px] font-semibold uppercase tracking-[0.2em] text-zinc-400 hover:text-white transition duration-300">Paketler</a>
-                    <a href="#iletisim" class="nav-scroll-link text-[11px] font-semibold uppercase tracking-[0.2em] text-zinc-400 hover:text-white transition duration-300">İletişim</a>
+                    <a href="#hakkimizda" class="nav-scroll-link text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500 hover:text-sky-600 transition duration-300">Hakkımızda</a>
+                    <a href="#hizmetler" class="nav-scroll-link text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500 hover:text-sky-600 transition duration-300">Hizmetler</a>
+                    <button type="button" onclick="openPaketlerModal()" class="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500 hover:text-sky-600 transition duration-300 cursor-pointer bg-transparent border-none p-0">Paketler</button>
+                    <a href="#iletisim" class="nav-scroll-link text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500 hover:text-sky-600 transition duration-300">İletişim</a>
                     
-                    <a href="https://wa.me/905524010769?text=Merhaba,%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener noreferrer" class="bg-white hover:bg-zinc-200 text-black px-6 py-2.5 rounded-sm text-[11px] font-bold uppercase tracking-widest transition-all flex items-center gap-2 group shadow-[0_0_20px_rgba(255,255,255,0.1)] hover:shadow-[0_0_25px_rgba(255,255,255,0.2)]">
-                        <svg class="w-3.5 h-3.5 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+                    <a href="https://wa.me/905524010769?text=Merhaba,%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener noreferrer" class="bg-sky-500 hover:bg-sky-600 text-white px-6 py-2.5 rounded-sm text-[11px] font-bold uppercase tracking-widest transition-all flex items-center gap-2 group shadow-[0_4px_14px_0_rgba(14,165,233,0.39)] hover:shadow-[0_6px_20px_rgba(14,165,233,0.23)] hover:-translate-y-0.5">
+                        <svg class="w-3.5 h-3.5 text-white" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
                         WhatsApp
                     </a>
                 </nav>
 
                 <!-- Mobile Menu Button -->
                 <div class="md:hidden flex items-center">
-                    <button id="mobile-menu-btn" class="text-zinc-300 hover:text-white focus:outline-none p-2 border border-zinc-800 rounded-sm bg-black/50">
+                    <button id="mobile-menu-btn" class="text-slate-500 hover:text-sky-600 focus:outline-none p-2 border border-sky-200 rounded-sm bg-white/50">
                         <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
@@ -134,79 +134,81 @@
             </div>
         </div>
 
-        <div id="mobile-menu" class="hidden md:hidden bg-black/95 backdrop-blur-xl border-t border-zinc-900 absolute w-full left-0 shadow-2xl">
+        <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-xl border-t border-sky-100 absolute w-full left-0 shadow-2xl">
             <div class="flex flex-col px-8 py-8 space-y-6">
-                <a href="#hakkimizda" class="nav-scroll-link mobile-link text-xs font-semibold uppercase tracking-widest text-zinc-400 hover:text-white">Hakkımızda</a>
-                <a href="#hizmetler" class="nav-scroll-link mobile-link text-xs font-semibold uppercase tracking-widest text-zinc-400 hover:text-white">Hizmetler</a>
-                <a href="javascript:void(0)" onclick="openPaketlerModal(); document.getElementById('mobile-menu').classList.add('hidden');" class="mobile-link text-xs font-semibold uppercase tracking-widest text-zinc-400 hover:text-white">Paketler</a>
-                <a href="#iletisim" class="nav-scroll-link mobile-link text-xs font-semibold uppercase tracking-widest text-zinc-400 hover:text-white">İletişim</a>
+                <a href="#hakkimizda" class="nav-scroll-link mobile-link text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-sky-600">Hakkımızda</a>
+                <a href="#hizmetler" class="nav-scroll-link mobile-link text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-sky-600">Hizmetler</a>
+                <button type="button" onclick="openPaketlerModal(); document.getElementById('mobile-menu').classList.add('hidden');" class="mobile-link text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-sky-600 text-left bg-transparent border-none p-0 cursor-pointer">Paketler</button>
+                <a href="#iletisim" class="nav-scroll-link mobile-link text-xs font-bold uppercase tracking-widest text-slate-500 hover:text-sky-600">İletişim</a>
             </div>
         </div>
     </header>
 
+    <!-- ANA SAYFA -->
     <section id="home" class="relative pt-32 pb-24 lg:pt-48 lg:pb-32 overflow-hidden flex items-center min-h-screen">
         <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-            <div class="absolute -top-[15%] -right-[5%] w-[60%] h-[60%] bg-blue-600/10 rounded-full blur-[120px]"></div>
-            <div class="absolute bottom-[5%] -left-[10%] w-[50%] h-[50%] bg-zinc-600/10 rounded-full blur-[150px]"></div>
+            <div class="absolute -top-[15%] -right-[5%] w-[60%] h-[60%] bg-sky-300/30 rounded-full blur-[120px]"></div>
+            <div class="absolute bottom-[5%] -left-[10%] w-[50%] h-[50%] bg-blue-200/40 rounded-full blur-[150px]"></div>
         </div>
 
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
             <div class="text-center max-w-5xl mx-auto reveal">
                 
-                <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full border border-zinc-800 bg-black/50 text-[10px] font-semibold uppercase tracking-[0.2em] text-blue-400 mb-8 backdrop-blur-md">
-                    <span class="w-1.5 h-1.5 rounded-full bg-blue-500 animate-pulse"></span>
+                <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full border border-sky-200 bg-white/60 text-[10px] font-bold uppercase tracking-[0.2em] text-sky-600 mb-8 backdrop-blur-md shadow-sm">
+                    <span class="w-1.5 h-1.5 rounded-full bg-sky-500 animate-pulse"></span>
                     Profesyonel Havadan Prodüksiyon
                 </div>
                 
-                <h1 class="font-heading text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-extrabold tracking-tight text-white mb-8 leading-[1.1]">
+                <h1 class="font-heading text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-extrabold tracking-tight text-slate-900 mb-8 leading-[1.1]">
                     GÖKYÜZÜNDEN <br/>
-                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-zinc-100 via-zinc-400 to-zinc-600">
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-500 via-blue-600 to-sky-700">
                         SINIR TANIMAYAN KARELER
                     </span>
                 </h1>
                 
-                <p class="mt-6 text-sm sm:text-lg text-zinc-400 max-w-2xl mx-auto mb-12 leading-relaxed font-light">
-                    Arazi tespiti, gayrimenkul tanıtımı ve kurumsal projeleriniz için yüksek kaliteli havadan çekim çözümleri sunuyoruz.
+                <p class="mt-6 text-sm sm:text-lg text-slate-600 max-w-2xl mx-auto mb-12 leading-relaxed font-medium">
+                    Yüksek kaliteli havadan çekim çözümleri sunuyoruz. Markanızın hikayesini en net ve çarpıcı açılardan belgeliyoruz.
                 </p>
                 
                 <div class="flex flex-col sm:flex-row gap-5 justify-center">
-                    <a href="javascript:void(0)" onclick="openPaketlerModal()" class="px-8 py-4 bg-white text-black rounded-sm font-heading font-bold text-[11px] uppercase tracking-[0.2em] hover:bg-zinc-200 transition duration-500 shadow-[0_0_20px_rgba(255,255,255,0.1)]">
+                    <button type="button" onclick="openPaketlerModal()" class="px-8 py-4 bg-sky-600 text-white rounded-sm font-heading font-bold text-[11px] uppercase tracking-[0.2em] hover:bg-sky-700 transition duration-500 shadow-[0_4px_14px_0_rgba(14,165,233,0.39)] hover:-translate-y-0.5 hover:shadow-[0_6px_20px_rgba(14,165,233,0.23)] cursor-pointer border-none">
                         Paketleri İncele
-                    </a>
-                    <a href="https://wa.me/905524010769?text=Merhaba,%20fiyat%20teklifi%20almak%20istiyorum." target="_blank" rel="noopener noreferrer" class="px-8 py-4 bg-transparent border border-zinc-700 hover:border-zinc-400 text-white rounded-sm font-heading font-bold text-[11px] uppercase tracking-[0.2em] transition duration-500 backdrop-blur-sm flex items-center justify-center gap-2">
+                    </button>
+                    <a href="https://wa.me/905524010769?text=Merhaba,%20fiyat%20teklifi%20almak%20istiyorum." target="_blank" rel="noopener noreferrer" class="px-8 py-4 bg-white/80 border border-sky-200 hover:border-sky-400 text-sky-700 rounded-sm font-heading font-bold text-[11px] uppercase tracking-[0.2em] transition duration-500 backdrop-blur-sm flex items-center justify-center gap-2 hover:bg-white shadow-sm">
                         Teklif Al
                     </a>
                 </div>
             </div>
 
-            <div class="mt-24 sm:mt-32 flex flex-col sm:flex-row justify-center items-center gap-12 sm:gap-24 reveal border-y border-zinc-900/50 py-10 bg-black/20 backdrop-blur-md">
+            <div class="mt-24 sm:mt-32 flex flex-col sm:flex-row justify-center items-center gap-12 sm:gap-24 reveal border-y border-sky-100 py-10 bg-white/40 backdrop-blur-md">
                 <div class="text-center">
-                    <h3 class="font-heading text-4xl sm:text-5xl font-bold text-white mb-2 tracking-tighter">500<span class="text-blue-500">.</span></h3>
-                    <p class="text-zinc-500 text-[10px] font-semibold uppercase tracking-[0.25em]">Tamamlanan Proje</p>
+                    <h3 class="font-heading text-4xl sm:text-5xl font-extrabold text-slate-800 mb-2 tracking-tighter">500<span class="text-sky-500">.</span></h3>
+                    <p class="text-slate-500 text-[10px] font-bold uppercase tracking-[0.25em]">Tamamlanan Proje</p>
                 </div>
-                <div class="hidden sm:block w-[1px] h-16 bg-zinc-900"></div>
+                <div class="hidden sm:block w-[1px] h-16 bg-sky-200"></div>
                 <div class="text-center">
-                    <h3 class="font-heading text-4xl sm:text-5xl font-bold text-white mb-2 tracking-tighter">4K<span class="text-blue-500">.</span></h3>
-                    <p class="text-zinc-500 text-[10px] font-semibold uppercase tracking-[0.25em]">Ultra HD Çözünürlük</p>
+                    <h3 class="font-heading text-4xl sm:text-5xl font-extrabold text-slate-800 mb-2 tracking-tighter">4K<span class="text-sky-500">.</span></h3>
+                    <p class="text-slate-500 text-[10px] font-bold uppercase tracking-[0.25em]">Ultra HD Çözünürlük</p>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- HAKKIMIZDA -->
     <section id="hakkimizda" class="py-24 sm:py-32 scroll-mt-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
                 
                 <div class="lg:col-span-7 reveal">
                     <div class="flex items-center gap-4 mb-6">
-                        <div class="h-[1px] w-10 bg-blue-500"></div>
-                        <h2 class="text-[10px] font-bold text-blue-500 tracking-[0.25em] uppercase">Hakkımızda</h2>
+                        <div class="h-[1px] w-10 bg-sky-500"></div>
+                        <h2 class="text-[10px] font-bold text-sky-600 tracking-[0.25em] uppercase">Hakkımızda</h2>
                     </div>
-                    <h3 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-8 leading-tight tracking-tight">
+                    <h3 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-8 leading-tight tracking-tight">
                         5 Yıllık Tecrübe,<br/>
-                        <span class="text-zinc-600">Sınır Tanımayan Perspektif.</span>
+                        <span class="text-sky-700">Sınır Tanımayan Perspektif.</span>
                     </h3>
-                    <div class="space-y-6 text-zinc-400 text-sm sm:text-base font-light leading-relaxed">
+                    <div class="space-y-6 text-slate-600 text-sm sm:text-base font-medium leading-relaxed">
                         <p>
                             Sektöre adım attığımız günden bu yana, gökyüzünün sunduğu o eşsiz perspektifi profesyonellik ve sanatla harmanlıyoruz. Tam 5 yıldır sadece drone uçurmuyor; kurumsal hikayeleri, unutulmaz etkinlikleri ve markaların vizyonunu en doğru ışık, açı ve kurguyla belgeliyoruz.
                         </p>
@@ -217,15 +219,15 @@
                 </div>
 
                 <div class="lg:col-span-5 relative reveal">
-                    <div class="aspect-[4/5] glass-card p-2 relative glow-box overflow-hidden group">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent z-10"></div>
+                    <div class="aspect-[4/5] glass-card p-2 relative glow-box overflow-hidden group rounded-xl shadow-lg border-sky-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-sky-900/80 via-transparent to-transparent z-10"></div>
                         <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?q=80&w=800&auto=format&fit=crop" 
                              alt="Drone Operatörü" 
                              loading="lazy"
-                             class="w-full h-full object-cover filter grayscale contrast-125 group-hover:grayscale-0 transition duration-1000 ease-in-out scale-105 group-hover:scale-100 rounded-sm">
+                             class="w-full h-full object-cover transition duration-1000 ease-in-out scale-105 group-hover:scale-100 rounded-lg">
                         <div class="absolute bottom-6 left-6 z-20">
                             <p class="text-white font-heading font-bold text-lg mb-1 tracking-wide">Kusursuz Kareler</p>
-                            <p class="text-blue-500 text-[10px] uppercase tracking-[0.2em] font-semibold">Profesyonel Kurgu</p>
+                            <p class="text-sky-300 text-[10px] uppercase tracking-[0.2em] font-bold">Profesyonel Kurgu</p>
                         </div>
                     </div>
                 </div>
@@ -234,44 +236,45 @@
         </div>
     </section>
 
-    <section id="hizmetler" class="py-24 sm:py-32 bg-zinc-950/20 border-y border-zinc-900/50 scroll-mt-24">
+    <!-- HİZMETLER -->
+    <section id="hizmetler" class="py-24 sm:py-32 bg-sky-50/50 border-y border-sky-100 scroll-mt-24">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
-            <div class="mb-16 sm:mb-20 reveal">
-                <div class="flex items-center gap-4 mb-4">
-                    <div class="h-[1px] w-10 bg-blue-500"></div>
-                    <h2 class="text-[10px] font-bold text-blue-500 tracking-[0.25em] uppercase">Uzmanlık Alanlarımız</h2>
+            <div class="mb-16 sm:mb-20 reveal text-center sm:text-left">
+                <div class="flex items-center justify-center sm:justify-start gap-4 mb-4">
+                    <div class="h-[2px] w-10 bg-sky-500"></div>
+                    <h2 class="text-[10px] font-bold text-sky-600 tracking-[0.25em] uppercase">Uzmanlık Alanlarımız</h2>
                 </div>
-                <h3 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white leading-tight tracking-tight">Yüksek Standartlı<br/>Prodüksiyon Çözümleri</h3>
+                <h3 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 leading-tight tracking-tight">Yüksek Standartlı<br/>Prodüksiyon Çözümleri</h3>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
-                <div class="group glass-card p-10 transition duration-500 reveal rounded-sm">
-                    <div class="w-10 h-10 mb-8 text-zinc-600 group-hover:text-blue-500 transition duration-500">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
+                <div class="group glass-card p-10 transition duration-500 reveal rounded-xl bg-white/60 hover:bg-white">
+                    <div class="w-12 h-12 mb-8 text-sky-600 bg-sky-100 rounded-lg flex items-center justify-center group-hover:bg-sky-500 group-hover:text-white transition-all duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z"></path></svg>
                     </div>
-                    <h4 class="font-heading text-lg font-bold text-white mb-4 tracking-wide">Etkinlik Çekimi</h4>
-                    <p class="text-zinc-500 text-sm font-light leading-relaxed group-hover:text-zinc-400 transition">
+                    <h4 class="font-heading text-lg font-bold text-slate-900 mb-4 tracking-wide">Etkinlik Çekimi</h4>
+                    <p class="text-slate-600 text-sm font-medium leading-relaxed">
                         Konser, festival, açık hava organizasyonları ve büyük çaplı etkinliklerinizi en dinamik açılardan kaydederek unutulmaz kılıyoruz.
                     </p>
                 </div>
                 
-                <div class="group glass-card p-10 transition duration-500 reveal rounded-sm">
-                    <div class="w-10 h-10 mb-8 text-zinc-600 group-hover:text-blue-500 transition duration-500">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                <div class="group glass-card p-10 transition duration-500 reveal rounded-xl bg-white/60 hover:bg-white">
+                    <div class="w-12 h-12 mb-8 text-sky-600 bg-sky-100 rounded-lg flex items-center justify-center group-hover:bg-sky-500 group-hover:text-white transition-all duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
                     </div>
-                    <h4 class="font-heading text-lg font-bold text-white mb-4 tracking-wide">Kurumsal Tanıtım</h4>
-                    <p class="text-zinc-500 text-sm font-light leading-relaxed group-hover:text-zinc-400 transition">
+                    <h4 class="font-heading text-lg font-bold text-slate-900 mb-4 tracking-wide">Kurumsal Tanıtım</h4>
+                    <p class="text-slate-600 text-sm font-medium leading-relaxed">
                         Fabrika, tesis, gayrimenkul ve marka tanıtım filmleriniz için prestijli, akıcı ve sinematik hava görüntüleri oluşturuyoruz.
                     </p>
                 </div>
 
-                <div class="group glass-card p-10 transition duration-500 reveal rounded-sm">
-                    <div class="w-10 h-10 mb-8 text-zinc-600 group-hover:text-blue-500 transition duration-500">
-                        <svg fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                <div class="group glass-card p-10 transition duration-500 reveal rounded-xl bg-white/60 hover:bg-white">
+                    <div class="w-12 h-12 mb-8 text-sky-600 bg-sky-100 rounded-lg flex items-center justify-center group-hover:bg-sky-500 group-hover:text-white transition-all duration-300">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
                     </div>
-                    <h4 class="font-heading text-lg font-bold text-white mb-4 tracking-wide">Sosyal Medya</h4>
-                    <p class="text-zinc-500 text-sm font-light leading-relaxed group-hover:text-zinc-400 transition">
+                    <h4 class="font-heading text-lg font-bold text-slate-900 mb-4 tracking-wide">Sosyal Medya</h4>
+                    <p class="text-slate-600 text-sm font-medium leading-relaxed">
                         Instagram Reels, TikTok ve YouTube formatlarına uygun, dikey ve yatay hızlı tüketilebilir, yüksek etkileşimli yaratıcı kurgular.
                     </p>
                 </div>
@@ -279,160 +282,162 @@
         </div>
     </section>
 
-    <div id="paketlerModal" class="fixed inset-0 z-[100] hidden bg-black/95 backdrop-blur-xl overflow-y-auto">
+    <!-- PAKETLER MODALI -->
+    <div id="paketlerModal" class="fixed inset-0 z-[100] hidden bg-sky-50/95 backdrop-blur-xl overflow-y-auto">
         <div class="min-h-screen px-4 py-20 relative">
-            <button onclick="closePaketlerModal()" class="fixed top-6 right-6 sm:top-10 sm:right-10 z-50 text-zinc-400 hover:text-white bg-zinc-900/50 hover:bg-zinc-800 p-4 rounded-full transition-all border border-zinc-800">
+            <button onclick="closePaketlerModal()" class="fixed top-6 right-6 sm:top-10 sm:right-10 z-50 text-sky-600 hover:text-sky-800 bg-white/50 hover:bg-white p-4 rounded-full transition-all border border-sky-200 shadow-sm">
                 <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
             </button>
             
             <div class="max-w-7xl mx-auto">
                 <div class="text-center mb-16 sm:mb-20">
                     <div class="inline-flex items-center gap-3 mb-4">
-                        <div class="h-[1px] w-8 bg-blue-500"></div>
-                        <h2 class="text-[10px] font-bold text-blue-500 tracking-[0.25em] uppercase">Fiyatlandırma</h2>
-                        <div class="h-[1px] w-8 bg-blue-500"></div>
+                        <div class="h-[2px] w-8 bg-sky-400"></div>
+                        <h2 class="text-[10px] font-bold text-sky-500 tracking-[0.25em] uppercase">Fiyatlandırma</h2>
+                        <div class="h-[2px] w-8 bg-sky-400"></div>
                     </div>
-                    <h3 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-bold text-white tracking-tight">Çekim Paketleri</h3>
-                    <p class="text-zinc-500 text-sm mt-4 font-light">İhtiyacınıza uygun paketi seçin, profesyonel çekime başlayalım.</p>
+                    <h3 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">Çekim Paketleri</h3>
+                    <p class="text-slate-500 text-sm mt-4 font-medium">İhtiyacınıza uygun paketi seçin, profesyonel çekime başlayalım.</p>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
                     
                     <!-- Paket 1: Ham Çekim Paketi -->
-                    <div class="glass-card rounded-sm flex flex-col p-8">
-                        <h4 class="text-white font-heading font-bold text-xl mb-2">Ham Çekim Paketi</h4>
-                        <p class="text-zinc-500 text-xs mb-6 h-8">Video ve fotoğraf ham paket.</p>
+                    <div class="bg-white rounded-xl flex flex-col p-8 shadow-xl border border-sky-100">
+                        <h4 class="text-slate-900 font-heading font-extrabold text-xl mb-2">Ham Çekim Paketi</h4>
+                        <p class="text-slate-500 text-xs mb-6 h-8 font-medium">Video ve fotoğraf ham paket.</p>
                         <div class="mb-6">
-                            <span class="text-3xl font-heading font-bold text-white">3.500</span>
-                            <span class="text-zinc-500 text-sm">₺</span>
+                            <span class="text-4xl font-heading font-extrabold text-sky-600">3.500</span>
+                            <span class="text-slate-400 text-lg font-bold">₺</span>
                         </div>
                         <ul class="space-y-4 mb-8 flex-1">
-                            <li class="flex items-start gap-3 text-sm text-zinc-300 font-light">
-                                <svg class="w-5 h-5 text-blue-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <li class="flex items-start gap-3 text-sm text-slate-700 font-medium">
+                                <svg class="w-5 h-5 text-sky-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 1-3 Dakika Arası 4K Çözünürlüklü Video Çekimi
                             </li>
-                            <li class="flex items-start gap-3 text-sm text-zinc-300 font-light">
-                                <svg class="w-5 h-5 text-blue-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <li class="flex items-start gap-3 text-sm text-slate-700 font-medium">
+                                <svg class="w-5 h-5 text-sky-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 8-10 Adet Yüksek Çözünürlüklü 4K Görüntü Kalitesinde Hava Fotoğrafı
                             </li>
-                            <li class="flex items-start gap-3 text-sm text-zinc-300 font-light">
-                                <svg class="w-5 h-5 text-blue-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <li class="flex items-start gap-3 text-sm text-slate-700 font-medium">
+                                <svg class="w-5 h-5 text-sky-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 Tüm 4K Ham Görüntülerin Teslimi
                             </li>
-                            <li class="flex items-start gap-3 text-xs text-zinc-400 font-bold mt-2">
-                                <svg class="w-4 h-4 text-zinc-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <li class="flex items-start gap-3 text-xs text-sky-600 font-bold mt-2 bg-sky-50 p-2 rounded-md">
+                                <svg class="w-4 h-4 text-sky-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                 Teslim Süresi: Aynı İş Günü
                             </li>
                         </ul>
-                        <a href="https://wa.me/905524010769?text=Merhaba,%203.500%20TL'lik%20Ham%20Çekim%20Paketi%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" class="w-full block text-center border border-zinc-700 hover:border-blue-500 hover:bg-blue-500/10 text-white py-3 text-[11px] font-bold uppercase tracking-widest transition-all">Seç</a>
+                        <a href="https://wa.me/905524010769?text=Merhaba,%203.500%20TL'lik%20Ham%20Çekim%20Paketi%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" class="w-full block text-center border-2 border-sky-200 hover:border-sky-500 hover:bg-sky-50 text-sky-700 py-3.5 text-[11px] font-bold uppercase tracking-widest transition-all rounded-lg">Seç</a>
                     </div>
 
                     <!-- Paket 2: Standart Prodüksiyon -->
-                    <div class="glass-card rounded-sm flex flex-col p-8">
-                        <h4 class="text-white font-heading font-bold text-xl mb-2">Standart Prodüksiyon</h4>
-                        <p class="text-zinc-500 text-xs mb-6 h-8">Video ve fotoğraf kurgu montaj dahil.</p>
+                    <div class="bg-white rounded-xl flex flex-col p-8 shadow-2xl border-2 border-sky-400 relative transform md:-translate-y-4">
+                        <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-sky-500 text-white text-[10px] font-bold uppercase tracking-widest px-4 py-1.5 rounded-full shadow-md">En Çok Tercih Edilen</div>
+                        <h4 class="text-slate-900 font-heading font-extrabold text-xl mb-2 mt-2">Standart Prodüksiyon</h4>
+                        <p class="text-slate-500 text-xs mb-6 h-8 font-medium">Video ve fotoğraf kurgu montaj dahil.</p>
                         <div class="mb-6">
-                            <span class="text-3xl font-heading font-bold text-white">5.000</span>
-                            <span class="text-zinc-500 text-sm">₺</span>
+                            <span class="text-4xl font-heading font-extrabold text-sky-600">5.000</span>
+                            <span class="text-slate-400 text-lg font-bold">₺</span>
                         </div>
                         <ul class="space-y-4 mb-8 flex-1">
-                            <li class="flex items-start gap-3 text-sm text-zinc-300 font-light">
-                                <svg class="w-5 h-5 text-blue-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <li class="flex items-start gap-3 text-sm text-slate-700 font-medium">
+                                <svg class="w-5 h-5 text-sky-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 1 Dakika 4K Çözünürlüklü Video Çekimi
                             </li>
-                            <li class="flex items-start gap-3 text-sm text-zinc-300 font-light">
-                                <svg class="w-5 h-5 text-blue-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <li class="flex items-start gap-3 text-sm text-slate-700 font-medium">
+                                <svg class="w-5 h-5 text-sky-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 8-10 Adet Yüksek Çözünürlüklü 4K Görüntü Kalitesinde Hava Fotoğrafı
                             </li>
-                            <li class="flex items-start gap-3 text-sm text-zinc-300 font-light">
-                                <svg class="w-5 h-5 text-blue-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <li class="flex items-start gap-3 text-sm text-slate-700 font-medium">
+                                <svg class="w-5 h-5 text-sky-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 Çevre Özelliklerinin 4K Haritalandırılması
                             </li>
-                            <li class="flex items-start gap-3 text-sm text-zinc-300 font-light">
-                                <svg class="w-5 h-5 text-blue-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <li class="flex items-start gap-3 text-sm text-slate-700 font-medium">
+                                <svg class="w-5 h-5 text-sky-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 Sınırların Dinamik Animasyonla Gösterimi
                             </li>
-                            <li class="flex items-start gap-3 text-sm text-zinc-300 font-light">
-                                <svg class="w-5 h-5 text-blue-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <li class="flex items-start gap-3 text-sm text-slate-700 font-medium">
+                                <svg class="w-5 h-5 text-sky-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 Profesyonel Kurgu & Montaj (4K)
                             </li>
-                            <li class="flex items-start gap-3 text-xs text-zinc-400 font-bold mt-2">
-                                <svg class="w-4 h-4 text-zinc-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <li class="flex items-start gap-3 text-xs text-sky-600 font-bold mt-2 bg-sky-50 p-2 rounded-md">
+                                <svg class="w-4 h-4 text-sky-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                 Teslim Süresi: 1-2 İş Günü
                             </li>
                         </ul>
                         <div class="flex flex-col gap-3 mt-auto">
-                            <a href="https://wa.me/905524010769?text=Merhaba,%205.000%20TL'lik%20Standart%20Prodüksiyon%20Paketi%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" class="w-full block text-center border border-zinc-700 hover:border-blue-500 hover:bg-blue-500/10 text-white py-3 text-[11px] font-bold uppercase tracking-widest transition-all rounded-sm">Seç</a>
+                            <a href="https://wa.me/905524010769?text=Merhaba,%205.000%20TL'lik%20Standart%20Prodüksiyon%20Paketi%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" class="w-full block text-center bg-sky-600 hover:bg-sky-700 text-white py-3.5 text-[11px] font-bold uppercase tracking-widest transition-all rounded-lg shadow-md hover:shadow-lg">Hemen Seç</a>
                             
-                            <button onclick="toggleStandartVideo()" class="w-full flex items-center justify-center gap-2 text-center border border-blue-500/50 hover:bg-blue-500/10 text-blue-400 py-3 text-[10px] font-bold uppercase tracking-widest transition-all rounded-sm">
+                            <button onclick="toggleStandartVideo()" class="w-full flex items-center justify-center gap-2 text-center text-sky-600 hover:text-sky-700 hover:bg-sky-50 py-3 text-[10px] font-bold uppercase tracking-widest transition-all rounded-lg">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                 Örnek Projeyi Gör
                             </button>
                             
                             <div id="standartVideoContainer" class="hidden w-full mt-2 transition-all duration-300">
-                                <div class="p-1 rounded-sm shadow-2xl overflow-hidden aspect-[4/5] bg-black border border-blue-500/30 relative">
-                                    <div class="absolute inset-0 flex items-center justify-center text-blue-500 z-0">
+                                <div class="p-1 rounded-lg shadow-inner overflow-hidden aspect-[4/5] bg-slate-100 border border-slate-200 relative">
+                                    <div class="absolute inset-0 flex items-center justify-center text-sky-500 z-0">
                                         <svg class="animate-spin h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
                                     </div>
-                                    <iframe id="standartVideoIframe" data-src="https://www.instagram.com/reel/DTm-VW2jEC5/embed" class="w-full h-full border-0 relative z-10 opacity-0 transition-opacity duration-1000" title="Standart Prodüksiyon Örnek" onload="this.classList.remove('opacity-0')"></iframe>
+                                    <iframe id="standartVideoIframe" data-src="https://www.instagram.com/reel/DTm-VW2jEC5/embed" class="w-full h-full border-0 relative z-10 opacity-0 transition-opacity duration-1000 rounded-md" title="Standart Prodüksiyon Örnek" onload="this.classList.remove('opacity-0')"></iframe>
                                 </div>
                             </div>
                         </div>
                     </div>
 
-                    <!-- Paket 3: Drone Pro Paketi -->
-                    <div class="glass-card glass-card-gold rounded-sm flex flex-col p-8 glow-box-gold relative overflow-hidden">
-                        <div class="absolute top-4 right-4 bg-yellow-600 text-black text-[9px] font-bold uppercase tracking-widest px-2 py-1 rounded-sm">En Kapsamlı</div>
-                        <h4 class="text-white font-heading font-bold text-xl mb-2">Drone Pro Paketi</h4>
-                        <p class="text-zinc-400 text-xs mb-6 h-8">Yapay zeka modelleme ve tam prodüksiyon.</p>
+                    <!-- Paket 3: Drone Pro Paketi (6000 TL) - Işıltılı / Açık Tema Versiyonu -->
+                    <div class="bg-gradient-to-br from-white to-amber-50/50 rounded-xl flex flex-col p-8 shadow-2xl border-2 border-yellow-400 relative overflow-hidden">
+                        <div class="absolute top-4 right-4 bg-yellow-500 text-slate-900 text-[9px] font-bold uppercase tracking-widest px-3 py-1.5 rounded-full shadow-sm">Premium</div>
+                        <h4 class="text-slate-900 font-heading font-extrabold text-xl mb-2 mt-2">Drone Pro Paketi</h4>
+                        <p class="text-slate-500 text-xs mb-6 h-8 font-medium">Yapay zeka modelleme ve tam prodüksiyon.</p>
                         <div class="mb-6">
-                            <span class="text-3xl font-heading font-bold text-white">6.000</span>
-                            <span class="text-yellow-500 text-sm">₺</span>
+                            <span class="text-4xl font-heading font-extrabold text-slate-900">6.000</span>
+                            <span class="text-yellow-600 text-lg font-bold">₺</span>
                         </div>
                         <ul class="space-y-4 mb-8 flex-1">
-                            <li class="flex items-start gap-3 text-sm text-zinc-300 font-light">
-                                <svg class="w-5 h-5 text-yellow-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <li class="flex items-start gap-3 text-sm text-slate-700 font-medium">
+                                <svg class="w-5 h-5 text-yellow-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 Profesyonel 4K Drone Video Çekimi (1 Dakika)
                             </li>
-                            <li class="flex items-start gap-3 text-sm text-zinc-300 font-light">
-                                <svg class="w-5 h-5 text-yellow-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <li class="flex items-start gap-3 text-sm text-slate-700 font-medium">
+                                <svg class="w-5 h-5 text-yellow-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 8-10 Adet Yüksek Çözünürlüklü 4K Görüntü Kalitesinde Hava Fotoğrafı
                             </li>
-                            <li class="flex items-start gap-3 text-sm text-zinc-300 font-light">
-                                <svg class="w-5 h-5 text-yellow-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <li class="flex items-start gap-3 text-sm text-slate-700 font-medium">
+                                <svg class="w-5 h-5 text-yellow-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 Çevre Özellikleri 4K Haritalandırma
                             </li>
-                            <li class="flex items-start gap-3 text-sm text-zinc-300 font-light">
-                                <svg class="w-5 h-5 text-yellow-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <li class="flex items-start gap-3 text-sm text-slate-700 font-medium">
+                                <svg class="w-5 h-5 text-yellow-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 Sosyal Medya İçin Profesyonel Kurgu & Montaj (4K)
                             </li>
-                            <li class="flex items-start gap-3 text-sm text-zinc-300 font-light">
-                                <svg class="w-5 h-5 text-yellow-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            <li class="flex items-start gap-3 text-sm text-slate-700 font-medium">
+                                <svg class="w-5 h-5 text-yellow-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
                                 Sınırların Dinamik Animasyonla Gösterimi
                             </li>
-                            <li class="flex items-start gap-3 text-sm text-yellow-500 font-bold">
-                                <svg class="w-5 h-5 text-yellow-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                            <li class="flex items-start gap-3 text-sm text-yellow-700 font-bold bg-yellow-50/80 p-2 rounded-md border border-yellow-200">
+                                <svg class="w-5 h-5 text-yellow-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                                 Yapay Zeka Destekli 3D Görsel Modelleme
                             </li>
-                            <li class="flex items-start gap-3 text-xs text-zinc-400 font-bold mt-2">
-                                <svg class="w-4 h-4 text-zinc-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                            <li class="flex items-start gap-3 text-xs text-slate-500 font-bold mt-2">
+                                <svg class="w-4 h-4 text-slate-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                 Teslim Süresi: 1-2 İş Günü
                             </li>
                         </ul>
                         <div class="flex flex-col gap-3 mt-auto">
-                            <a href="https://wa.me/905524010769?text=Merhaba,%206.000%20TL'lik%20Drone%20Pro%20Paketi%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" class="w-full block text-center bg-yellow-600 hover:bg-yellow-500 text-black py-3 text-[11px] font-bold uppercase tracking-widest transition-all shadow-[0_0_15px_rgba(202,138,4,0.3)] rounded-sm">Hemen Al</a>
+                            <a href="https://wa.me/905524010769?text=Merhaba,%206.000%20TL'lik%20Drone%20Pro%20Paketi%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" class="w-full block text-center bg-yellow-500 hover:bg-yellow-400 text-slate-900 py-3.5 text-[11px] font-bold uppercase tracking-widest transition-all shadow-[0_4px_14px_0_rgba(234,179,8,0.39)] rounded-lg">Hemen Al</a>
                             
-                            <button onclick="toggleProVideo()" class="w-full flex items-center justify-center gap-2 text-center border border-yellow-600/50 hover:bg-yellow-600/10 text-yellow-500 py-3 text-[10px] font-bold uppercase tracking-widest transition-all rounded-sm">
+                            <button onclick="toggleProVideo()" class="w-full flex items-center justify-center gap-2 text-center border-2 border-yellow-200 hover:bg-yellow-50 hover:border-yellow-300 text-yellow-700 py-3 text-[10px] font-bold uppercase tracking-widest transition-all rounded-lg">
                                 <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
                                 Örnek Projeyi Gör
                             </button>
                             
                             <div id="proVideoContainer" class="hidden w-full mt-2 transition-all duration-300">
-                                <div class="p-1 rounded-sm shadow-2xl overflow-hidden aspect-[4/5] bg-black border border-yellow-600/30 relative">
-                                    <div class="absolute inset-0 flex items-center justify-center text-yellow-600 z-0">
+                                <div class="p-1 rounded-lg shadow-inner overflow-hidden aspect-[4/5] bg-black border border-yellow-200 relative">
+                                    <div class="absolute inset-0 flex items-center justify-center text-yellow-500 z-0">
                                         <svg class="animate-spin h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"><circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle><path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path></svg>
                                     </div>
-                                    <iframe id="proVideoIframe" data-src="https://www.instagram.com/p/DceYBxNMOp8/embed" class="w-full h-full border-0 relative z-10 opacity-0 transition-opacity duration-1000" title="Drone Pro Örnek Proje" onload="this.classList.remove('opacity-0')"></iframe>
+                                    <iframe id="proVideoIframe" data-src="https://www.instagram.com/p/DceYBxNMOp8/embed" class="w-full h-full border-0 relative z-10 opacity-0 transition-opacity duration-1000 rounded-md" title="Drone Pro Örnek Proje" onload="this.classList.remove('opacity-0')"></iframe>
                                 </div>
                             </div>
                         </div>
@@ -440,28 +445,28 @@
 
                 </div>
                 
-                <div class="mt-8 text-center text-zinc-500 text-[10px] uppercase tracking-widest mb-16">
+                <div class="mt-8 text-center text-slate-500 text-[10px] uppercase tracking-widest mb-16">
                     * Video kurgusu tamamlandığında tarafınıza bir önizleme sunulur. Onay sonrası ödeme havale ile yapılır.
                 </div>
 
-                <!-- Diğer Paket Teslimleri -->
-                <div class="border-t border-zinc-900/50 pt-16">
+                <!-- Diğer Paket Teslimleri (Modal İçi) -->
+                <div class="border-t border-sky-200 pt-16">
                     <div class="text-center mb-12">
                         <div class="inline-flex items-center gap-3 mb-4">
-                            <div class="h-[1px] w-8 bg-zinc-700"></div>
-                            <h2 class="text-[10px] font-bold text-zinc-400 tracking-[0.25em] uppercase">Projeler</h2>
-                            <div class="h-[1px] w-8 bg-zinc-700"></div>
+                            <div class="h-[2px] w-8 bg-sky-400"></div>
+                            <h2 class="text-[10px] font-bold text-sky-600 tracking-[0.25em] uppercase">Projeler</h2>
+                            <div class="h-[2px] w-8 bg-sky-400"></div>
                         </div>
-                        <h3 class="font-heading text-2xl font-bold text-white tracking-tight">Diğer Paket Teslimleri</h3>
-                        <p class="text-zinc-500 text-sm mt-2 font-light">Farklı paketlerimizle hazırladığımız bazı örnek işler.</p>
+                        <h3 class="font-heading text-2xl font-bold text-slate-900 tracking-tight">Diğer Paket Teslimleri</h3>
+                        <p class="text-slate-600 text-sm mt-2 font-medium">Farklı paketlerimizle hazırladığımız bazı örnek işler.</p>
                     </div>
                     
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-3xl mx-auto">
-                        <div class="glass-card p-1.5 rounded-sm shadow-2xl overflow-hidden aspect-[4/5] bg-black">
-                            <iframe data-src="https://www.instagram.com/p/DdHXzP2MwPX/embed" class="modal-lazy-iframe w-full h-full border-0" title="Örnek Proje 1"></iframe>
+                        <div class="bg-white p-1.5 rounded-xl shadow-lg overflow-hidden aspect-[4/5]">
+                            <iframe data-src="https://www.instagram.com/p/DdHXzP2MwPX/embed" class="modal-lazy-iframe w-full h-full border-0 rounded-lg" title="Örnek Proje 1"></iframe>
                         </div>
-                        <div class="glass-card p-1.5 rounded-sm shadow-2xl overflow-hidden aspect-[4/5] bg-black">
-                            <iframe data-src="https://www.instagram.com/p/DZGC_zZMrOM/embed" class="modal-lazy-iframe w-full h-full border-0" title="Örnek Proje 2"></iframe>
+                        <div class="bg-white p-1.5 rounded-xl shadow-lg overflow-hidden aspect-[4/5]">
+                            <iframe data-src="https://www.instagram.com/p/DZGC_zZMrOM/embed" class="modal-lazy-iframe w-full h-full border-0 rounded-lg" title="Örnek Proje 2"></iframe>
                         </div>
                     </div>
                 </div>
@@ -470,35 +475,38 @@
         </div>
     </div>
 
-    <section id="iletisim" class="py-24 sm:py-32 scroll-mt-24 relative bg-zinc-950/40 border-t border-zinc-900/50">
+    <!-- İLETİŞİM -->
+    <section id="iletisim" class="py-24 sm:py-32 scroll-mt-24 relative bg-sky-600 border-t border-sky-500">
         <div class="max-w-4xl mx-auto px-4 text-center reveal">
             <div class="inline-flex items-center gap-3 mb-4">
-                <div class="h-[1px] w-10 bg-blue-500"></div>
-                <h2 class="text-[10px] font-bold text-blue-500 tracking-[0.25em] uppercase">İletişim</h2>
-                <div class="h-[1px] w-10 bg-blue-500"></div>
+                <div class="h-[2px] w-10 bg-sky-300"></div>
+                <h2 class="text-[10px] font-bold text-sky-200 tracking-[0.25em] uppercase">İletişim</h2>
+                <div class="h-[2px] w-10 bg-sky-300"></div>
             </div>
-            <h3 class="font-heading text-3xl sm:text-5xl font-bold text-white mb-6 tracking-tight">Projeyi Şimdi Başlatalım</h3>
-            <p class="text-zinc-400 text-sm sm:text-base font-light max-w-xl mx-auto mb-10 leading-relaxed">
+            <h3 class="font-heading text-3xl sm:text-5xl font-extrabold text-white mb-6 tracking-tight">Projeyi Şimdi Başlatalım</h3>
+            <p class="text-sky-100 text-sm sm:text-base font-medium max-w-xl mx-auto mb-10 leading-relaxed">
                 Tüm soru, özel proje talepleri ve hızlı siparişleriniz için WhatsApp destek hattımız üzerinden doğrudan bizimle iletişime geçebilirsiniz.
             </p>
-            <a href="https://wa.me/905524010769?text=Merhaba,%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-white hover:bg-zinc-200 text-black px-8 py-4 rounded-sm font-heading font-bold text-xs uppercase tracking-[0.2em] transition-all shadow-[0_0_25px_rgba(255,255,255,0.15)]">
-                <svg class="w-5 h-5 text-green-600" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            <a href="https://wa.me/905524010769?text=Merhaba,%20bilgi%20almak%20istiyorum." target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-3 bg-white hover:bg-slate-50 text-slate-900 px-8 py-4 rounded-lg font-heading font-extrabold text-xs uppercase tracking-[0.2em] transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1">
+                <svg class="w-5 h-5 text-green-500" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
                 WhatsApp İle Bağlan (0552 401 07 69)
             </a>
         </div>
     </section>
 
-    <footer class="border-t border-zinc-900 bg-black py-10 mt-auto">
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-200 bg-white py-10 mt-auto">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
             <div class="flex items-center">
-                <span class="font-heading font-bold text-sm tracking-widest text-zinc-400 uppercase">MarmaraMedyaDrone</span>
+                <span class="font-heading font-extrabold text-sm tracking-widest text-slate-800 uppercase">MarmaraMedyaDrone</span>
             </div>
-            <p class="text-zinc-600 text-[10px] uppercase tracking-[0.2em] text-center md:text-left font-semibold">
+            <p class="text-slate-500 text-[10px] uppercase tracking-[0.2em] text-center md:text-left font-bold">
                 &copy; 2026 MarmaraMedyaDrone. Tüm hakları saklıdır.
             </p>
         </div>
     </footer>
 
+    <!-- SCRIPTS -->
     <script>
         const btn = document.getElementById('mobile-menu-btn');
         const menu = document.getElementById('mobile-menu');
@@ -538,28 +546,39 @@
         
         revealElements.forEach(el => revealObserver.observe(el));
 
-        function openPaketlerModal() {
+        // Make openPaketlerModal globally available
+        window.openPaketlerModal = function() {
             const modal = document.getElementById('paketlerModal');
-            modal.classList.remove('hidden');
-            document.body.style.overflow = 'hidden';
-            
-            const modalIframes = modal.querySelectorAll('.modal-lazy-iframe');
-            modalIframes.forEach(iframe => {
-                if(iframe.dataset.src && !iframe.src) {
-                    iframe.src = iframe.dataset.src;
-                }
-            });
-        }
+            if(modal) {
+                modal.classList.remove('hidden');
+                document.body.style.overflow = 'hidden';
+                
+                const modalIframes = modal.querySelectorAll('.modal-lazy-iframe');
+                modalIframes.forEach(iframe => {
+                    if(iframe.dataset.src && !iframe.src) {
+                        iframe.src = iframe.dataset.src;
+                    }
+                });
+            } else {
+                console.error("paketlerModal element not found!");
+            }
+        };
 
-        function closePaketlerModal() {
-            document.getElementById('paketlerModal').classList.add('hidden');
-            document.body.style.overflow = '';
-            
-            document.getElementById('proVideoContainer').classList.add('hidden');
-            document.getElementById('standartVideoContainer').classList.add('hidden');
-        }
+        window.closePaketlerModal = function() {
+            const modal = document.getElementById('paketlerModal');
+            if(modal) {
+                modal.classList.add('hidden');
+                document.body.style.overflow = '';
+                
+                const proContainer = document.getElementById('proVideoContainer');
+                if(proContainer) proContainer.classList.add('hidden');
+                
+                const standartContainer = document.getElementById('standartVideoContainer');
+                if(standartContainer) standartContainer.classList.add('hidden');
+            }
+        };
 
-        function toggleProVideo() {
+        window.toggleProVideo = function() {
             const container = document.getElementById('proVideoContainer');
             const iframe = document.getElementById('proVideoIframe');
             
@@ -574,9 +593,9 @@
             } else {
                 container.classList.add('hidden');
             }
-        }
+        };
 
-        function toggleStandartVideo() {
+        window.toggleStandartVideo = function() {
             const container = document.getElementById('standartVideoContainer');
             const iframe = document.getElementById('standartVideoIframe');
             
@@ -591,7 +610,7 @@
             } else {
                 container.classList.add('hidden');
             }
-        }
+        };
     </script>
 </body>
 </html>
