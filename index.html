@@ -6,71 +6,10 @@
     <title>Marmara Medya Drone - Emlak Çekimleri</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
-    <style>
-        /* Vercel Garantili Özel Lightbox CSS (Tailwind çakışmalarını önler) */
-        .custom-lightbox {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background-color: rgba(0, 0, 0, 0.9);
-            z-index: 999999 !important;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-        
-        .custom-lightbox.active {
-            display: flex !important;
-        }
-
-        .lightbox-content {
-            width: 100%;
-            max-width: 400px; /* 9:16 oranını korumak için max genişlik */
-            height: 80vh;     /* Dikey format yüksekliği */
-            max-height: 800px;
-            background: #000;
-            position: relative;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
-        }
-
-        .close-btn {
-            position: absolute;
-            top: -40px;
-            right: 0;
-            color: white;
-            font-size: 30px;
-            cursor: pointer;
-            z-index: 1000000;
-        }
-
-        .fallback-btn {
-            margin-top: 20px;
-            background-color: #E1306C; /* Instagram rengi */
-            color: white;
-            padding: 10px 20px;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: bold;
-            font-family: sans-serif;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            transition: opacity 0.3s;
-        }
-
-        .fallback-btn:hover {
-            opacity: 0.8;
-        }
-    </style>
 </head>
 <body class="bg-sky-50 min-h-screen text-slate-800 font-sans">
 
-    <!-- Header / Ana Başlık -->
+    <!-- Header -->
     <header class="bg-white shadow-sm border-b border-sky-100 py-10 px-4 text-center">
         <h1 class="text-4xl md:text-5xl font-black text-slate-900 tracking-tight mb-4 uppercase">
             Emlak Sektörüne Özel Drone Çekimleri
@@ -80,7 +19,7 @@
         </p>
     </header>
 
-    <!-- Güvenli Ödeme Bildirimi -->
+    <!-- Güvenli Ödeme Kutusu -->
     <div class="max-w-3xl mx-auto mt-8 px-4">
         <div class="bg-green-50 border-2 border-green-200 rounded-xl p-4 flex items-center justify-center gap-3 text-green-800 shadow-sm">
             <i class="fa-solid fa-shield-halved text-2xl"></i>
@@ -91,7 +30,7 @@
         </div>
     </div>
 
-    <!-- Paketler Bölümü -->
+    <!-- Paketler -->
     <main class="max-w-6xl mx-auto px-4 py-12">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
             
@@ -123,7 +62,7 @@
                 </a>
             </div>
 
-            <!-- 2. Standart Prodüksiyon Paketi (Mavi Çerçeveli) -->
+            <!-- 2. Standart Prodüksiyon Paketi -->
             <div class="bg-white rounded-2xl p-6 shadow-xl border-4 border-sky-500 flex flex-col relative transform md:-translate-y-4">
                 <div class="absolute -top-4 left-1/2 transform -translate-x-1/2 bg-sky-500 text-white px-4 py-1 rounded-full text-sm font-bold shadow-md">
                     En Çok Tercih Edilen
@@ -162,7 +101,7 @@
                 </a>
             </div>
 
-            <!-- 3. Drone Pro Paketi (Koyu Tema) -->
+            <!-- 3. Drone Pro Paketi -->
             <div class="bg-slate-900 rounded-2xl p-6 shadow-2xl border-4 border-yellow-500 flex flex-col relative text-white">
                 <h3 class="text-2xl font-bold text-white mb-2">Drone Pro Paketi</h3>
                 <div class="text-3xl font-black text-yellow-400 mb-6">6.000 ₺</div>
@@ -202,13 +141,12 @@
             </div>
         </div>
 
-        <!-- Instagram Yönlendirme Alanı -->
+        <!-- Instagram Alanı -->
         <div class="mt-20 text-center max-w-2xl mx-auto border-t border-slate-200 pt-12">
             <h2 class="text-3xl font-black text-slate-900 mb-4">Daha Fazla Video Çalışması İçin</h2>
             <p class="text-slate-600 mb-8 font-medium text-lg">
                 Tüm güncel drone projelerimizi ve kurgularımızı incelemek için Instagram profilimizi ziyaret edebilirsiniz.
             </p>
-            
             <a href="https://www.instagram.com/marmaramedyadrone/" target="_blank" class="inline-flex items-center gap-3 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white px-8 py-4 rounded-full font-bold text-lg hover:shadow-lg hover:scale-105 transition-all">
                 <i class="fa-brands fa-instagram text-2xl"></i>
                 Instagram'da Bizi Takip Edin
@@ -228,22 +166,14 @@
         </div>
     </footer>
 
-    <!-- Vercel Uyumlu Özel Lightbox (Tam Ekran Video) Kutusu -->
-    <div id="videoLightbox" class="custom-lightbox" onclick="closeVideo(event)">
-        <div class="lightbox-content relative" onclick="event.stopPropagation()">
-            <div class="close-btn" onclick="closeVideo(event)">&times;</div>
-            <iframe 
-                id="lightboxIframe"
-                class="w-full h-full" 
-                src="" 
-                frameborder="0" 
-                scrolling="no" 
-                allowtransparency="true" 
-                allow="autoplay; encrypted-media; picture-in-picture">
-            </iframe>
+    <!-- Video Tam Ekran (Lightbox) Kutusu -->
+    <div id="videoLightbox" class="fixed inset-0 z-[999999] bg-black/90 hidden flex-col items-center justify-center p-4" onclick="closeVideo(event)">
+        <div class="relative w-full max-w-[400px] h-[80vh] max-h-[800px] bg-black rounded-xl overflow-hidden shadow-2xl" onclick="event.stopPropagation()">
+            <button onclick="closeVideo(event)" class="absolute -top-10 right-0 text-white text-4xl cursor-pointer hover:text-gray-300 z-[1000000]">&times;</button>
+            <iframe id="lightboxIframe" class="w-full h-full" src="" frameborder="0" allow="autoplay; encrypted-media"></iframe>
         </div>
-        <!-- Acil Durum / Fallback Butonu: Video yüklenmezse diye -->
-        <a id="fallbackLink" href="#" target="_blank" class="fallback-btn" onclick="event.stopPropagation()">
+        <!-- Vercel veya Tarayıcı Instagram'ı engellerse görünecek yedek buton -->
+        <a id="fallbackLink" href="#" target="_blank" class="mt-6 bg-pink-600 text-white px-6 py-2 rounded-lg font-bold hidden items-center gap-2 hover:bg-pink-700 transition" onclick="event.stopPropagation()">
             <i class="fa-brands fa-instagram"></i> Videoyu Instagram'da İzle
         </a>
     </div>
@@ -254,31 +184,31 @@
         const fallbackLink = document.getElementById('fallbackLink');
 
         function openVideo(url) {
-            // İframe'e video linkini yükle
             iframe.src = url;
             
-            // Eğer iframe çalışmazsa yedek buton için orijinal linki oluştur
+            // Eğer iframe çalışmazsa Instagram'da açma butonu
             let originalUrl = url.replace('/embed/captioned=false', '');
             fallbackLink.href = originalUrl;
-
-            // CSS ile yazılmış custom-lightbox'a 'active' sınıfı ekleyerek görünür yap (flex yapar)
-            lightbox.classList.add('active');
+            fallbackLink.style.display = 'flex';
             
-            // Sayfanın arkada kaymasını engelle
+            // Gizli (hidden) olan kutuyu görünür (flex) yap
+            lightbox.classList.remove('hidden');
+            lightbox.classList.add('flex');
+            
+            // Arka planın kaymasını engelle
             document.body.style.overflow = 'hidden';
         }
 
         function closeVideo(event) {
             if (event) event.stopPropagation();
             
-            // İframe içeriğini temizle (videoyu durdur)
             iframe.src = '';
             
-            // Lightbox'ı gizle
-            lightbox.classList.remove('active');
+            lightbox.classList.add('hidden');
+            lightbox.classList.remove('flex');
             
-            // Sayfanın kaymasına tekrar izin ver
             document.body.style.overflow = 'auto';
+            fallbackLink.style.display = 'none';
         }
     </script>
 </body>
