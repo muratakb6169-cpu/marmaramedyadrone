@@ -1,215 +1,569 @@
-!DOCTYPE html
-html lang=tr
-head
-    meta charset=UTF-8
-    meta name=viewport content=width=device-width, initial-scale=1.0
-    titleMarmara Medya Drone - Emlak Çekimlerititle
-    script src=httpscdn.tailwindcss.comscript
-    link href=httpscdnjs.cloudflare.comajaxlibsfont-awesome6.0.0cssall.min.css rel=stylesheet
-head
-body class=bg-sky-50 min-h-screen text-slate-800 font-sans
+<!DOCTYPE html>
+<html lang="tr" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MarmaraMedyaDrone | Emlak Sektörüne Özel Çekimler</title>
+    <meta name="description" content="Gayrimenkul portföyünüzü sergileyin, satışlarınızı hızlandıracak sinematik drone çekimleri.">
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <style>
+        body { 
+            font-family: 'Inter', sans-serif; 
+        }
 
-    !-- Header --
-    header class=bg-white shadow-sm border-b border-sky-100 py-10 px-4 text-center
-        h1 class=text-4xl mdtext-5xl font-black text-slate-900 tracking-tight mb-4 uppercase
-            Emlak Sektörüne Özel Drone Çekimleri
-        h1
-        p class=text-lg mdtext-xl text-slate-600 max-w-2xl mx-auto font-medium
-            Gayrimenkul portföyünüzü sergileyin, satışlarınızı hızlandıracak sinematik çekimler.
-        p
-    header
+        /* Animations */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
 
-    !-- Güvenli Ödeme Kutusu --
-    div class=max-w-3xl mx-auto mt-8 px-4
-        div class=bg-green-50 border-2 border-green-200 rounded-xl p-4 flex items-center justify-center gap-3 text-green-800 shadow-sm
-            i class=fa-solid fa-shield-halved text-2xli
-            div
-                h3 class=font-bold text-lgGüvenli Ödeme Sürecih3
-                p class=text-sm font-mediumÖdemenizi, projenizin önizlemesini izleyip onayladıktan sonra havale ile güvenle yapabilirsiniz.p
-            div
-        div
-    div
+        @keyframes slideInDown {
+            0% { opacity: 0; transform: translateY(-20px); }
+            100% { opacity: 1; transform: translateY(0); }
+        }
+        .auto-animate-header {
+            animation: slideInDown 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+        }
 
-    !-- Paketler --
-    main class=max-w-6xl mx-auto px-4 py-12
-        div class=grid grid-cols-1 mdgrid-cols-3 gap-8
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: #f0f9ff; } /* sky-50 */
+        ::-webkit-scrollbar-thumb { background: #94a3b8; border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: #64748b; }
+        
+        /* Glass effect for light mode */
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(226, 232, 240, 0.6);
+        }
+    </style>
+</head>
+<body class="antialiased text-slate-900 bg-sky-50 selection:bg-sky-500 selection:text-white flex flex-col min-h-screen">
+
+    <!-- HEADER -->
+    <header class="fixed w-full top-0 z-50 glass-nav transition-all duration-300 auto-animate-header shadow-sm">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                
+                <!-- Logo -->
+                <a href="#home" class="flex-shrink-0 flex items-center gap-3 group">
+                    <div class="w-10 h-10 rounded-full border border-sky-200 bg-sky-100 flex items-center justify-center group-hover:border-sky-500 transition duration-500 shadow-sm">
+                        <svg class="w-5 h-5 text-sky-600 group-hover:text-sky-500 transition duration-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                        </svg>
+                    </div>
+                    <span class="font-bold text-base sm:text-lg tracking-widest text-slate-800 uppercase">MarmaraMedyaDrone</span>
+                </a>
+
+                <!-- Desktop Menu -->
+                <nav class="hidden md:flex space-x-8 items-center">
+                    <a href="#hakkimizda" class="nav-scroll-link text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500 hover:text-sky-600 transition duration-300">Hakkımızda</a>
+                    <a href="#hizmetler" class="nav-scroll-link text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500 hover:text-sky-600 transition duration-300">Hizmetler</a>
+                    <button onclick="openPaketlerModal()" class="text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500 hover:text-sky-600 transition duration-300">Paketler</button>
+                    <a href="#iletisim" class="nav-scroll-link text-[11px] font-bold uppercase tracking-[0.2em] text-slate-500 hover:text-sky-600 transition duration-300">İletişim</a>
+                    
+                    <a href="https://wa.me/905524010769?text=Merhaba,%20bilgi%20almak%20istiyorum." target="_blank" class="bg-slate-900 hover:bg-slate-800 text-white px-6 py-2.5 rounded-lg text-[11px] font-bold uppercase tracking-widest transition-all flex items-center gap-2 shadow-md hover:shadow-lg">
+                        <svg class="w-4 h-4 text-green-400" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+                        WhatsApp
+                    </a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden flex items-center">
+                    <button id="mobile-menu-btn" class="text-slate-600 focus:outline-none p-2 rounded-md hover:bg-slate-100 transition">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100 shadow-xl absolute w-full left-0">
+            <div class="flex flex-col px-6 py-6 space-y-5">
+                <a href="#hakkimizda" class="nav-scroll-link text-sm font-bold uppercase tracking-widest text-slate-600 hover:text-sky-600">Hakkımızda</a>
+                <a href="#hizmetler" class="nav-scroll-link text-sm font-bold uppercase tracking-widest text-slate-600 hover:text-sky-600">Hizmetler</a>
+                <button onclick="openPaketlerModal(); document.getElementById('mobile-menu').classList.add('hidden');" class="text-left text-sm font-bold uppercase tracking-widest text-slate-600 hover:text-sky-600">Paketler</button>
+                <a href="#iletisim" class="nav-scroll-link text-sm font-bold uppercase tracking-widest text-slate-600 hover:text-sky-600">İletişim</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section id="home" class="relative pt-32 pb-24 lg:pt-48 lg:pb-32 overflow-hidden flex items-center min-h-screen">
+        <div class="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+            <div class="absolute -top-[15%] -right-[5%] w-[60%] h-[60%] bg-blue-200/40 rounded-full blur-[100px]"></div>
+            <div class="absolute bottom-[5%] -left-[10%] w-[50%] h-[50%] bg-sky-300/30 rounded-full blur-[120px]"></div>
+        </div>
+
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="text-center max-w-5xl mx-auto reveal">
+                
+                <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full border border-sky-200 bg-white/60 text-[10px] font-bold uppercase tracking-[0.2em] text-sky-600 mb-8 backdrop-blur-md shadow-sm">
+                    <span class="w-2 h-2 rounded-full bg-sky-500 animate-pulse"></span>
+                    Profesyonel Havadan Prodüksiyon
+                </div>
+                
+                <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-extrabold tracking-tight text-slate-900 mb-8 leading-[1.1]">
+                    EMLAK SEKTÖRÜNE <br/>
+                    <span class="text-transparent bg-clip-text bg-gradient-to-r from-sky-500 to-blue-700">
+                        ÖZEL DRONE ÇEKİMLERİ
+                    </span>
+                </h1>
+                
+                <p class="mt-6 text-sm sm:text-lg text-slate-600 max-w-2xl mx-auto mb-12 leading-relaxed font-medium">
+                    Gayrimenkul portföyünüzü sergileyin, satışlarınızı hızlandıracak sinematik çekimler ve 4K detaylarla projelerinizi zirveye taşıyın.
+                </p>
+                
+                <div class="flex flex-col sm:flex-row gap-5 justify-center">
+                    <button onclick="openPaketlerModal()" class="px-8 py-4 bg-slate-900 text-white rounded-lg font-bold text-[11px] uppercase tracking-[0.2em] hover:bg-sky-600 transition duration-500 shadow-xl hover:shadow-sky-500/30">
+                        Paketleri İncele
+                    </button>
+                    <a href="https://wa.me/905524010769?text=Merhaba,%20fiyat%20teklifi%20almak%20istiyorum." target="_blank" class="px-8 py-4 bg-white border-2 border-slate-200 hover:border-slate-800 text-slate-800 rounded-lg font-bold text-[11px] uppercase tracking-[0.2em] transition duration-500 flex items-center justify-center gap-2 shadow-sm">
+                        Teklif Al
+                    </a>
+                </div>
+            </div>
+
+            <div class="mt-24 sm:mt-32 flex flex-col sm:flex-row justify-center items-center gap-12 sm:gap-24 reveal border-y border-slate-200/60 py-10 bg-white/40 backdrop-blur-md rounded-2xl">
+                <div class="text-center">
+                    <h3 class="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-2 tracking-tighter">500<span class="text-sky-500">+</span></h3>
+                    <p class="text-slate-500 text-[10px] font-bold uppercase tracking-[0.25em]">Tamamlanan Proje</p>
+                </div>
+                <div class="hidden sm:block w-[2px] h-16 bg-slate-200"></div>
+                <div class="text-center">
+                    <h3 class="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-2 tracking-tighter">4K<span class="text-sky-500">.</span></h3>
+                    <p class="text-slate-500 text-[10px] font-bold uppercase tracking-[0.25em]">Ultra HD Çözünürlük</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT SECTION -->
+    <section id="hakkimizda" class="py-24 sm:py-32 scroll-mt-20 relative">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-16 lg:gap-24 items-center">
+                
+                <div class="lg:col-span-7 reveal">
+                    <div class="flex items-center gap-4 mb-6">
+                        <div class="h-[2px] w-10 bg-sky-500"></div>
+                        <h2 class="text-[10px] font-bold text-sky-600 tracking-[0.25em] uppercase">Hakkımızda</h2>
+                    </div>
+                    <h3 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 mb-8 leading-tight tracking-tight">
+                        5 Yıllık Tecrübe,<br/>
+                        <span class="text-slate-500">Sınır Tanımayan Perspektif.</span>
+                    </h3>
+                    <div class="space-y-6 text-slate-600 text-sm sm:text-base font-medium leading-relaxed">
+                        <p>
+                            Sektöre adım attığımız günden bu yana, gökyüzünün sunduğu o eşsiz perspektifi profesyonellik ve sanatla harmanlıyoruz. Tam 5 yıldır sadece drone uçurmuyor; gayrimenkul projelerini, kurumsal hikayeleri ve markaların vizyonunu en doğru ışık, açı ve kurguyla belgeliyoruz.
+                        </p>
+                        <p>
+                            Teknolojinin sunduğu en üst düzey 4K kameralarımız ve tecrübeli uçuş ekibimizle, her projede güvenliği ön planda tutarak sınırları zorluyoruz. Sizin hayal ettiğinizi, biz gökyüzünden çekiyoruz.
+                        </p>
+                    </div>
+                </div>
+
+                <div class="lg:col-span-5 relative reveal">
+                    <div class="aspect-[4/5] bg-white p-3 rounded-2xl shadow-2xl relative overflow-hidden group border border-slate-100">
+                        <img src="https://images.unsplash.com/photo-1508614589041-895b88991e3e?q=80&w=800&auto=format&fit=crop" 
+                             alt="Drone Operatörü" loading="lazy" 
+                             class="w-full h-full object-cover rounded-xl transition duration-1000 ease-in-out scale-105 group-hover:scale-100">
+                        <div class="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent z-10 rounded-xl m-3"></div>
+                        <div class="absolute bottom-8 left-8 z-20">
+                            <p class="text-white font-bold text-xl mb-1 tracking-wide">Kusursuz Kareler</p>
+                            <p class="text-sky-400 text-[10px] uppercase tracking-[0.2em] font-bold">Profesyonel Kurgu</p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- SERVICES SECTION -->
+    <section id="hizmetler" class="py-24 sm:py-32 bg-white/60 border-y border-slate-200/60 scroll-mt-20">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             
-            !-- 1. Ham Çekim Paketi --
-            div class=bg-white rounded-2xl p-6 shadow-xl border-4 border-slate-700 flex flex-col relative
-                h3 class=text-2xl font-bold text-slate-900 mb-2Ham Çekim Paketih3
-                div class=text-3xl font-black text-slate-900 mb-63.000 ₺div
+            <div class="mb-16 sm:mb-20 reveal">
+                <div class="flex items-center gap-4 mb-4">
+                    <div class="h-[2px] w-10 bg-sky-500"></div>
+                    <h2 class="text-[10px] font-bold text-sky-600 tracking-[0.25em] uppercase">Uzmanlık Alanlarımız</h2>
+                </div>
+                <h3 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 leading-tight tracking-tight">Yüksek Standartlı<br/>Prodüksiyon Çözümleri</h3>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8">
+                <!-- Emlak & Gayrimenkul -->
+                <div class="bg-white hover:bg-sky-50 border border-slate-100 p-10 transition duration-500 reveal rounded-2xl shadow-lg hover:shadow-xl">
+                    <div class="w-12 h-12 mb-8 text-sky-500 bg-sky-50 rounded-xl flex items-center justify-center">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-4 tracking-wide">Gayrimenkul Çekimi</h4>
+                    <p class="text-slate-600 text-sm font-medium leading-relaxed">
+                        Villa, arazi, lüks konut projeleri ve ticari mülklerinizi en prestijli, çevre hatlarıyla belirgin şekilde havadan fotoğraflıyor ve videoya alıyoruz.
+                    </p>
+                </div>
                 
-                ul class=space-y-4 flex-grow mb-8 font-medium text-slate-800
-                    li class=flex items-start gap-3
-                        i class=fa-solid fa-check text-sky-500 mt-1i
-                        spanProfesyonel 4K Drone Video Çekimi (1-3 Dakika)span
-                    li
-                    li class=flex items-start gap-3
-                        i class=fa-solid fa-check text-sky-500 mt-1i
-                        span8-10 Adet 4K Fotoğrafspan
-                    li
-                    li class=flex items-start gap-3
-                        i class=fa-solid fa-check text-sky-500 mt-1i
-                        spanAynı iş günü teslimspan
-                    li
-                ul
+                <!-- Kurumsal -->
+                <div class="bg-white hover:bg-sky-50 border border-slate-100 p-10 transition duration-500 reveal rounded-2xl shadow-lg hover:shadow-xl">
+                    <div class="w-12 h-12 mb-8 text-sky-500 bg-sky-50 rounded-xl flex items-center justify-center">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-4 tracking-wide">Kurumsal Tanıtım</h4>
+                    <p class="text-slate-600 text-sm font-medium leading-relaxed">
+                        Fabrika, tesis ve marka tanıtım filmleriniz için prestijli, akıcı ve sinematik hava görüntüleri oluşturuyoruz.
+                    </p>
+                </div>
 
-                button onclick=openVideo('httpswww.instagram.comreelDE-9kEaID-oembedcaptioned=false') class=w-full bg-transparent border-2 border-slate-800 text-slate-800 hoverbg-slate-800 hovertext-white py-3 rounded-xl font-black transition-colors flex items-center justify-center gap-2 mb-3
-                    i class=fa-solid fa-playi Örnek Projeyi Gör
-                button
-                a href=httpswa.me905322961858text=Merhaba, Ham Çekim Paketi (3.000 ₺) hakkında bilgi almak istiyorum. target=_blank class=w-full bg-transparent border-2 border-slate-700 text-slate-800 hoverbg-slate-700 hovertext-white py-3 rounded-xl font-bold transition-colors text-center block
-                    i class=fa-brands fa-whatsapp mr-1i WhatsApp'tan Seç
-                a
-            div
+                <!-- Sosyal Medya -->
+                <div class="bg-white hover:bg-sky-50 border border-slate-100 p-10 transition duration-500 reveal rounded-2xl shadow-lg hover:shadow-xl">
+                    <div class="w-12 h-12 mb-8 text-sky-500 bg-sky-50 rounded-xl flex items-center justify-center">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                    </div>
+                    <h4 class="text-xl font-bold text-slate-900 mb-4 tracking-wide">Sosyal Medya Kurgu</h4>
+                    <p class="text-slate-600 text-sm font-medium leading-relaxed">
+                        Instagram Reels, TikTok ve YouTube formatlarına uygun, dikey ve yatay hızlı tüketilebilir, yüksek etkileşimli yaratıcı kurgular.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-            !-- 2. Standart Prodüksiyon Paketi --
-            div class=bg-white rounded-2xl p-6 shadow-xl border-4 border-sky-500 flex flex-col relative transform md-translate-y-4
-                div class=absolute -top-4 left-12 transform -translate-x-12 bg-sky-500 text-white px-4 py-1 rounded-full text-sm font-bold shadow-md
-                    En Çok Tercih Edilen
-                div
-                h3 class=text-2xl font-bold text-slate-900 mb-2Standart Prodüksiyonh3
-                div class=text-3xl font-black text-slate-900 mb-65.000 ₺div
-                
-                ul class=space-y-4 flex-grow mb-8 font-medium text-slate-800
-                    li class=flex items-start gap-3
-                        i class=fa-solid fa-check text-sky-500 mt-1i
-                        spanProfesyonel 4K Drone Video Çekimi (1 Dakika)span
-                    li
-                    li class=flex items-start gap-3
-                        i class=fa-solid fa-check text-sky-500 mt-1i
-                        span8-10 Adet 4K Fotoğrafspan
-                    li
-                    li class=flex items-start gap-3
-                        i class=fa-solid fa-check text-sky-500 mt-1i
-                        spanÇevre özellikleri 4K haritalandırmaspan
-                    li
-                    li class=flex items-start gap-3
-                        i class=fa-solid fa-check text-sky-500 mt-1i
-                        spanSınırların dinamik animasyonla gösterimispan
-                    li
-                    li class=flex items-start gap-3
-                        i class=fa-solid fa-check text-sky-500 mt-1i
-                        spanSosyal Medya İçin Profesyonel Kurgu & Montaj (4K)span
-                    li
-                ul
+    <!-- PAKETLER MODAL (TAM EKRAN) -->
+    <div id="paketlerModal" class="fixed inset-0 z-[100] hidden bg-slate-50/95 backdrop-blur-xl overflow-y-auto">
+        <div class="min-h-screen px-4 py-20 relative">
+            
+            <!-- Modal Kapatma Butonu -->
+            <button onclick="closePaketlerModal()" class="fixed top-6 right-6 sm:top-10 sm:right-10 z-50 text-slate-500 hover:text-slate-900 bg-white p-4 rounded-full transition-all border border-slate-200 shadow-md">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16 sm:mb-20">
+                    <div class="inline-flex items-center gap-3 mb-4">
+                        <div class="h-[2px] w-8 bg-sky-500"></div>
+                        <h2 class="text-[10px] font-bold text-sky-600 tracking-[0.25em] uppercase">Fiyatlandırma</h2>
+                        <div class="h-[2px] w-8 bg-sky-500"></div>
+                    </div>
+                    <h3 class="text-3xl sm:text-4xl lg:text-5xl font-extrabold text-slate-900 tracking-tight">Çekim Paketleri</h3>
+                    <p class="text-slate-600 text-sm mt-4 font-medium">İhtiyacınıza uygun paketi seçin, profesyonel çekime başlayalım.</p>
+                </div>
 
-                button onclick=openVideo('httpswww.instagram.comreelDFS1bAfoC-Uembedcaptioned=false') class=w-full bg-transparent border-2 border-slate-800 text-slate-800 hoverbg-sky-500 hoverborder-sky-500 hovertext-white py-3 rounded-xl font-black transition-colors flex items-center justify-center gap-2 mb-3
-                    i class=fa-solid fa-playi Örnek Projeyi Gör
-                button
-                a href=httpswa.me905322961858text=Merhaba, Standart Prodüksiyon Paketi (5.000 ₺) hakkında bilgi almak istiyorum. target=_blank class=w-full bg-transparent border-2 border-slate-700 text-slate-800 hoverbg-slate-700 hovertext-white py-3 rounded-xl font-bold transition-colors text-center block
-                    i class=fa-brands fa-whatsapp mr-1i WhatsApp'tan Seç
-                a
-            div
+                <!-- Paket Kartları Grid -->
+                <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                    
+                    <!-- 1. Paket: Ham Çekim -->
+                    <div class="bg-white rounded-2xl flex flex-col p-8 shadow-xl border-2 border-slate-700 relative">
+                        <h4 class="text-slate-900 font-bold text-2xl mb-2">Ham Çekim Paketi</h4>
+                        <p class="text-slate-500 text-xs mb-6 h-8 font-medium">Video ve fotoğraf ham paket.</p>
+                        <div class="mb-6">
+                            <span class="text-4xl font-extrabold text-slate-900">3.000</span>
+                            <span class="text-slate-500 text-lg font-bold">₺</span>
+                        </div>
+                        
+                        <ul class="space-y-4 mb-8 flex-1">
+                            <li class="flex items-start gap-3 text-sm text-slate-800 font-semibold">
+                                <svg class="w-5 h-5 text-sky-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                Profesyonel 4K Drone Video Çekimi (1-3 Dakika)
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-slate-800 font-semibold">
+                                <svg class="w-5 h-5 text-sky-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                8-10 Adet Yüksek Çözünürlüklü 4K Fotoğraf
+                            </li>
+                            <li class="flex items-start gap-3 text-xs text-slate-800 font-bold mt-4 bg-sky-50 p-2.5 rounded-lg border border-sky-100">
+                                <svg class="w-4 h-4 text-sky-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                Aynı İş Günü Teslim
+                            </li>
+                        </ul>
+                        
+                        <a href="https://wa.me/905524010769?text=Merhaba,%203.000%20TL'lik%20Ham%20Çekim%20Paketi%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" class="w-full block text-center border-2 border-slate-800 hover:bg-slate-800 hover:text-white text-slate-800 py-3.5 text-[11px] font-extrabold uppercase tracking-widest transition-all rounded-lg mt-auto">Seç</a>
+                    </div>
 
-            !-- 3. Drone Pro Paketi --
-            div class=bg-slate-900 rounded-2xl p-6 shadow-2xl border-4 border-yellow-500 flex flex-col relative text-white
-                h3 class=text-2xl font-bold text-white mb-2Drone Pro Paketih3
-                div class=text-3xl font-black text-yellow-400 mb-66.000 ₺div
-                
-                ul class=space-y-4 flex-grow mb-8 font-medium
-                    li class=flex items-start gap-3
-                        i class=fa-solid fa-check text-yellow-500 mt-1i
-                        spanProfesyonel 4K Drone Video Çekimi (1 Dakika)span
-                    li
-                    li class=flex items-start gap-3
-                        i class=fa-solid fa-check text-yellow-500 mt-1i
-                        span8-10 Adet 4K Fotoğrafspan
-                    li
-                    li class=flex items-start gap-3
-                        i class=fa-solid fa-check text-yellow-500 mt-1i
-                        spanÇevre özellikleri 4K haritalandırmaspan
-                    li
-                    li class=flex items-start gap-3
-                        i class=fa-solid fa-bolt text-yellow-400 mt-1i
-                        span class=text-yellow-400 font-boldYapay Zeka Destekli 3D Görsel Modellemespan
-                    li
-                    li class=flex items-start gap-3
-                        i class=fa-solid fa-check text-yellow-500 mt-1i
-                        spanSosyal Medya İçin Profesyonel Kurgu & Montaj (4K)span
-                    li
-                    li class=mt-4 pt-4 border-t border-slate-700
-                        span class=text-yellow-400 text-sm font-bold blocki class=fa-solid fa-clock mr-1i 2-3 İş Günü Teslimatspan
-                    li
-                ul
+                    <!-- 2. Paket: Standart Prodüksiyon -->
+                    <div class="bg-white rounded-2xl flex flex-col p-8 shadow-xl border-2 border-sky-500 relative">
+                        <h4 class="text-slate-900 font-bold text-2xl mb-2">Standart Prodüksiyon</h4>
+                        <p class="text-slate-500 text-xs mb-6 h-8 font-medium">Video ve fotoğraf kurgu montaj dahil.</p>
+                        <div class="mb-6">
+                            <span class="text-4xl font-extrabold text-slate-900">5.000</span>
+                            <span class="text-slate-500 text-lg font-bold">₺</span>
+                        </div>
+                        
+                        <ul class="space-y-4 mb-8 flex-1">
+                            <li class="flex items-start gap-3 text-sm text-slate-800 font-semibold">
+                                <svg class="w-5 h-5 text-sky-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                Profesyonel 4K Drone Video Çekimi (1 Dakika)
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-slate-800 font-semibold">
+                                <svg class="w-5 h-5 text-sky-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                8-10 Adet Yüksek Çözünürlüklü 4K Fotoğraf
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-slate-800 font-semibold">
+                                <svg class="w-5 h-5 text-sky-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                Çevre özellikleri 4K haritalandırma
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-slate-800 font-semibold">
+                                <svg class="w-5 h-5 text-sky-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                Sınırların dinamik animasyonla gösterimi
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-slate-800 font-semibold">
+                                <svg class="w-5 h-5 text-sky-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                Sosyal Medya İçin Profesyonel Kurgu & Montaj (4K)
+                            </li>
+                        </ul>
+                        
+                        <div class="flex flex-col gap-3 mt-auto">
+                            <!-- Lightbox Tetikleyici -->
+                            <button onclick="openVideoLightbox('https://www.instagram.com/reel/DTm-VW2jEC5/embed')" class="w-full flex items-center justify-center gap-2 text-center text-slate-600 hover:text-sky-600 py-3 text-[11px] font-black uppercase tracking-[0.2em] transition-all bg-white hover:bg-sky-50 rounded-lg border-2 border-slate-300 hover:border-sky-500 shadow-sm">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                Örnek Projeyi Gör
+                            </button>
 
-                button onclick=openVideo('httpswww.instagram.comreelDFYkIfwosfJembedcaptioned=false') class=w-full bg-transparent border-2 border-yellow-400 text-yellow-400 hoverbg-yellow-400 hovertext-slate-900 py-3 rounded-xl font-black transition-colors flex items-center justify-center gap-2 mb-3
-                    i class=fa-solid fa-playi Örnek Projeyi Gör
-                button
-                a href=httpswa.me905322961858text=Merhaba, Drone Pro Paketi (6.000 ₺) hakkında bilgi almak istiyorum. target=_blank class=w-full bg-yellow-500 hoverbg-yellow-400 text-slate-900 py-3 rounded-xl font-bold transition-colors text-center block shadow-lg
-                    i class=fa-brands fa-whatsapp mr-1i WhatsApp'tan Seç
-                a
-            div
-        div
+                            <a href="https://wa.me/905524010769?text=Merhaba,%205.000%20TL'lik%20Standart%20Prodüksiyon%20Paketi%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" class="w-full block text-center border-2 border-slate-800 hover:bg-slate-800 hover:text-white text-slate-800 py-3.5 text-[11px] font-extrabold uppercase tracking-widest transition-all rounded-lg">Seç</a>
+                        </div>
+                    </div>
 
-        !-- Instagram Alanı --
-        div class=mt-20 text-center max-w-2xl mx-auto border-t border-slate-200 pt-12
-            h2 class=text-3xl font-black text-slate-900 mb-4Daha Fazla Video Çalışması İçinh2
-            p class=text-slate-600 mb-8 font-medium text-lg
-                Tüm güncel drone projelerimizi ve kurgularımızı incelemek için Instagram profilimizi ziyaret edebilirsiniz.
-            p
-            a href=httpswww.instagram.commarmaramedyadrone target=_blank class=inline-flex items-center gap-3 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white px-8 py-4 rounded-full font-bold text-lg hovershadow-lg hoverscale-105 transition-all
-                i class=fa-brands fa-instagram text-2xli
-                Instagram'da Bizi Takip Edin
-            a
-        div
-    main
+                    <!-- 3. Paket: Drone Pro (Koyu Tema) -->
+                    <div class="bg-slate-900 rounded-2xl flex flex-col p-8 shadow-2xl border-2 border-yellow-500 relative transform lg:-translate-y-2">
+                        <div class="absolute top-0 right-0 bg-yellow-500 text-black text-[10px] font-extrabold uppercase tracking-widest px-4 py-1.5 rounded-bl-xl rounded-tr-xl">Premium</div>
+                        <h4 class="text-white font-bold text-2xl mb-2">Drone Pro Paketi</h4>
+                        <p class="text-slate-400 text-xs mb-6 h-8 font-medium">Yapay zeka modelleme ve tam prodüksiyon.</p>
+                        <div class="mb-6">
+                            <span class="text-4xl font-extrabold text-white">6.000</span>
+                            <span class="text-yellow-400 text-lg font-bold">₺</span>
+                        </div>
+                        
+                        <ul class="space-y-4 mb-8 flex-1">
+                            <li class="flex items-start gap-3 text-sm text-slate-200 font-medium">
+                                <svg class="w-5 h-5 text-yellow-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                Profesyonel 4K Drone Video Çekimi (1 Dakika)
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-slate-200 font-medium">
+                                <svg class="w-5 h-5 text-yellow-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                8-10 Adet Yüksek Çözünürlüklü 4K Fotoğraf
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-slate-200 font-medium">
+                                <svg class="w-5 h-5 text-yellow-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                Çevre özellikleri 4K haritalandırma
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-slate-200 font-medium">
+                                <svg class="w-5 h-5 text-yellow-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                Sınırların dinamik animasyonla gösterimi
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-slate-200 font-medium">
+                                <svg class="w-5 h-5 text-yellow-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                Sosyal Medya İçin Profesyonel Kurgu & Montaj (4K)
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-yellow-400 font-extrabold bg-slate-800/80 p-3 rounded-lg border border-slate-700">
+                                <svg class="w-5 h-5 text-yellow-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                                Yapay Zeka Destekli 3D Görsel Modelleme
+                            </li>
+                        </ul>
+                        
+                        <div class="flex flex-col gap-3 mt-auto">
+                            <!-- Lightbox Tetikleyici -->
+                            <button onclick="openVideoLightbox('https://www.instagram.com/p/DceYBxNMOp8/embed')" class="w-full flex items-center justify-center gap-2 text-center text-slate-300 hover:text-yellow-500 py-3 text-[11px] font-black uppercase tracking-[0.2em] transition-all bg-slate-900 hover:bg-slate-800 rounded-lg border-2 border-slate-500 hover:border-yellow-500 shadow-sm">
+                                <svg class="w-4 h-4 text-yellow-500" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14.752 11.168l-3.197-2.132A1 1 0 0010 9.87v4.263a1 1 0 001.555.832l3.197-2.132a1 1 0 000-1.664z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                                Örnek Projeyi Gör
+                            </button>
 
-    !-- Footer --
-    footer class=bg-slate-900 text-white py-12 text-center
-        div class=max-w-4xl mx-auto px-4
-            h2 class=text-2xl font-bold mb-6Marmara Medya Droneh2
-            p class=text-slate-400 mb-8Profesyonel havadan çekim ve prodüksiyon hizmetleri.p
-            a href=httpswa.me905322961858 target=_blank class=inline-flex items-center gap-2 bg-green-500 hoverbg-green-600 text-white px-8 py-4 rounded-full font-bold text-lg transition-colors
-                i class=fa-brands fa-whatsapp text-2xli
+                            <a href="https://wa.me/905524010769?text=Merhaba,%206.000%20TL'lik%20Drone%20Pro%20Paketi%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" class="w-full block text-center bg-yellow-500 hover:bg-yellow-400 text-black py-3.5 text-[11px] font-extrabold uppercase tracking-widest transition-all rounded-lg shadow-[0_0_20px_rgba(234,179,8,0.3)]">Hemen Al</a>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- GÜVENLİ ÖDEME BİLGİLENDİRMESİ -->
+                <div class="mt-16 max-w-4xl mx-auto">
+                    <div class="bg-white rounded-2xl shadow-lg border-l-4 border-sky-500 p-6 sm:p-8 flex items-start gap-4">
+                        <div class="p-3 bg-sky-50 rounded-full text-sky-600 flex-shrink-0">
+                            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"></path></svg>
+                        </div>
+                        <div>
+                            <h4 class="text-slate-900 font-bold text-lg mb-1">Güvenli Ödeme Süreci</h4>
+                            <p class="text-slate-600 text-sm font-medium leading-relaxed">
+                                Video kurgusu tamamlandığında tarafınıza bir <span class="font-bold text-slate-800">önizleme sunulur.</span> 
+                                Onayınızın ardından ödeme havale/EFT ile güvenle yapılır.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Diğer Örnek Projeler (Instagram Yönlendirmesi) -->
+                <div class="mt-20 border-t border-slate-200 pt-16 pb-10">
+                    <div class="text-center mb-10">
+                        <h3 class="text-2xl font-bold text-slate-900 tracking-tight">Daha Fazla Video Çalışması İçin</h3>
+                        <p class="text-slate-600 text-sm mt-3 font-medium">Tüm güncel drone projelerimizi ve kurgularımızı incelemek için Instagram profilimizi ziyaret edebilirsiniz.</p>
+                        
+                        <a href="https://www.instagram.com/marmaramedyadrone/" target="_blank" class="inline-flex items-center gap-2 mt-6 px-6 py-3 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 hover:from-purple-600 hover:via-pink-600 hover:to-orange-600 text-white rounded-lg font-bold text-xs uppercase tracking-widest transition-all shadow-md hover:shadow-lg">
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>
+                            Instagram'da Bizi Takip Edin
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- TAM EKRAN LİGHTBOX VİDEO OYNATICI -->
+    <div id="videoLightbox" class="fixed inset-0 z-[200] hidden bg-black/95 backdrop-blur-sm flex flex-col items-center justify-center p-4 sm:p-8">
+        
+        <!-- Kapatma Butonu -->
+        <button onclick="closeVideoLightbox()" class="absolute top-6 right-6 text-white/70 hover:text-white bg-white/10 hover:bg-red-500 p-3 rounded-full transition-all z-50">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+        </button>
+
+        <!-- Video Çerçevesi (9:16 Dikey Mobil Format) -->
+        <div class="w-full max-w-sm aspect-[9/16] bg-slate-900 rounded-xl overflow-hidden relative shadow-2xl border border-white/10">
+            <!-- Yükleniyor Spinner'ı -->
+            <div class="absolute inset-0 flex items-center justify-center text-white/50 z-0">
+                <svg class="animate-spin h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                </svg>
+            </div>
+            
+            <!-- Dinamik İframe -->
+            <iframe id="lightboxIframe" src="" class="w-full h-full border-0 relative z-10" allowfullscreen></iframe>
+        </div>
+    </div>
+
+    <!-- ILETISIM SECTION -->
+    <section id="iletisim" class="py-24 sm:py-32 bg-sky-100/50 border-t border-slate-200/60 scroll-mt-20">
+        <div class="max-w-4xl mx-auto px-4 text-center reveal">
+            <div class="inline-flex items-center gap-3 mb-4">
+                <div class="h-[2px] w-10 bg-sky-500"></div>
+                <h2 class="text-[10px] font-bold text-sky-600 tracking-[0.25em] uppercase">İletişim</h2>
+                <div class="h-[2px] w-10 bg-sky-500"></div>
+            </div>
+            <h3 class="text-3xl sm:text-5xl font-extrabold text-slate-900 mb-6 tracking-tight">Projeyi Şimdi Başlatalım</h3>
+            <p class="text-slate-600 text-sm sm:text-base font-medium max-w-xl mx-auto mb-10 leading-relaxed">
+                Tüm soru, özel proje talepleri ve hızlı siparişleriniz için WhatsApp destek hattımız üzerinden doğrudan bizimle iletişime geçebilirsiniz.
+            </p>
+            <a href="https://wa.me/905524010769?text=Merhaba,%20bilgi%20almak%20istiyorum." target="_blank" class="inline-flex items-center gap-3 bg-slate-900 hover:bg-slate-800 text-white px-8 py-4 rounded-lg font-bold text-xs uppercase tracking-[0.2em] transition-all shadow-xl hover:shadow-2xl hover:-translate-y-1">
+                <svg class="w-5 h-5 text-green-400" fill="currentColor" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51a12.8 12.8 0 0 0-.57-.01c-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
                 WhatsApp İle Bağlan
-            a
-        div
-    footer
+            </a>
+        </div>
+    </section>
 
-    !-- Video Tam Ekran (Lightbox) Kutusu --
-    div id=videoLightbox class=fixed inset-0 z-[999999] bg-black90 hidden flex-col items-center justify-center p-4 onclick=closeVideo(event)
-        div class=relative w-full max-w-[400px] h-[80vh] max-h-[800px] bg-black rounded-xl overflow-hidden shadow-2xl onclick=event.stopPropagation()
-            button onclick=closeVideo(event) class=absolute -top-10 right-0 text-white text-4xl cursor-pointer hovertext-gray-300 z-[1000000]&times;button
-            iframe id=lightboxIframe class=w-full h-full src= frameborder=0 allow=autoplay; encrypted-mediaiframe
-        div
-        !-- Vercel veya Tarayıcı Instagram'ı engellerse görünecek yedek buton --
-        a id=fallbackLink href=# target=_blank class=mt-6 bg-pink-600 text-white px-6 py-2 rounded-lg font-bold hidden items-center gap-2 hoverbg-pink-700 transition onclick=event.stopPropagation()
-            i class=fa-brands fa-instagrami Videoyu Instagram'da İzle
-        a
-    div
+    <!-- FOOTER -->
+    <footer class="border-t border-slate-200 bg-white py-10 mt-auto">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row justify-between items-center gap-6">
+            <div class="flex items-center">
+                <span class="font-bold text-sm tracking-widest text-slate-800 uppercase">MarmaraMedyaDrone</span>
+            </div>
+            <p class="text-slate-500 text-[10px] uppercase tracking-[0.2em] text-center md:text-left font-bold">
+                &copy; 2026 MarmaraMedyaDrone. Tüm hakları saklıdır.
+            </p>
+        </div>
+    </footer>
 
-    script
-        const lightbox = document.getElementById('videoLightbox');
-        const iframe = document.getElementById('lightboxIframe');
-        const fallbackLink = document.getElementById('fallbackLink');
+    <!-- SCRIPTS -->
+    <script>
+        // Mobil Menü
+        const btn = document.getElementById('mobile-menu-btn');
+        const menu = document.getElementById('mobile-menu');
+        btn.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
 
-        function openVideo(url) {
-            iframe.src = url;
-            
-             Eğer iframe çalışmazsa Instagram'da açma butonu
-            let originalUrl = url.replace('embedcaptioned=false', '');
-            fallbackLink.href = originalUrl;
-            fallbackLink.style.display = 'flex';
-            
-             Gizli (hidden) olan kutuyu görünür (flex) yap
-            lightbox.classList.remove('hidden');
-            lightbox.classList.add('flex');
-            
-             Arka planın kaymasını engelle
+        // Smooth Scroll
+        document.querySelectorAll('.nav-scroll-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                const targetId = this.getAttribute('href');
+                if (targetId && targetId.startsWith('#')) {
+                    e.preventDefault();
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        menu.classList.add('hidden');
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+            });
+        });
+
+        // Scroll Animasyonları
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealOptions = {
+            threshold: 0.1,
+            rootMargin: "0px 0px -50px 0px"
+        };
+        const revealObserver = new IntersectionObserver((entries, observer) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, revealOptions);
+        
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // Paketler Modalı
+        function openPaketlerModal() {
+            const modal = document.getElementById('paketlerModal');
+            modal.classList.remove('hidden');
             document.body.style.overflow = 'hidden';
         }
 
-        function closeVideo(event) {
-            if (event) event.stopPropagation();
+        function closePaketlerModal() {
+            document.getElementById('paketlerModal').classList.add('hidden');
+            document.body.style.overflow = '';
+        }
+
+        // Tam Ekran Video Lightbox
+        function openVideoLightbox(videoUrl) {
+            const lightbox = document.getElementById('videoLightbox');
+            const iframe = document.getElementById('lightboxIframe');
             
+            // Parametreleri temizleyip video kaynağını ayarla
+            iframe.src = videoUrl;
+            
+            // Lightbox'ı göster
+            lightbox.classList.remove('hidden');
+            // Alttaki sayfanın kaymasını engelle (Modal açıksa zaten kapalıdır ama garantiye alalım)
+            document.body.style.overflow = 'hidden'; 
+        }
+
+        function closeVideoLightbox() {
+            const lightbox = document.getElementById('videoLightbox');
+            const iframe = document.getElementById('lightboxIframe');
+            
+            // Videoyu durdurmak için iframe src'sini temizle
             iframe.src = '';
             
+            // Lightbox'ı gizle
             lightbox.classList.add('hidden');
-            lightbox.classList.remove('flex');
             
-            document.body.style.overflow = 'auto';
-            fallbackLink.style.display = 'none';
+            // Eğer Paketler modalı açık değilse kaydırmayı geri aç
+            if(document.getElementById('paketlerModal').classList.contains('hidden')) {
+                document.body.style.overflow = '';
+            }
         }
-    script
-body
-html
+        
+        // Lightbox arkaplanına tıklayınca kapatma
+        document.getElementById('videoLightbox').addEventListener('click', function(e) {
+            // Eğer tıklanan yer video çerçevesi değilse (tamamen dış siyah alansa) kapat
+            if (e.target === this) {
+                closeVideoLightbox();
+            }
+        });
+    </script>
+</body>
+</html>
