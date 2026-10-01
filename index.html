@@ -48,6 +48,17 @@
             backdrop-filter: blur(12px);
             border-bottom: 1px solid rgba(226, 232, 240, 0.6);
         }
+
+        /* Image Slider Styles */
+        .slide {
+            display: none;
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .slide.active {
+            display: block;
+        }
     </style>
 </head>
 <body class="antialiased text-slate-900 bg-sky-50 selection:bg-sky-500 selection:text-white flex flex-col min-h-screen">
@@ -265,23 +276,35 @@
                 <!-- Paket Kartları Grid -->
                 <div class="grid grid-cols-1 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
                     
-                    <!-- 1. Paket: Ham Çekim -->
+                    <!-- 1. Paket: Basit Fotoğraf+Kurgu Montaj Paketi -->
                     <div class="bg-white rounded-2xl flex flex-col p-8 shadow-xl border-2 border-slate-700 relative">
-                        <h4 class="text-slate-900 font-bold text-2xl mb-2">Ham Çekim Paketi</h4>
-                        <p class="text-slate-500 text-xs mb-6 h-8 font-medium">Video ve fotoğraf ham paket.</p>
+                        <h4 class="text-slate-900 font-bold text-2xl mb-2">Basit Fotoğraf+Kurgu Montaj Paketi</h4>
+                        <p class="text-slate-500 text-xs mb-6 h-8 font-medium">Temel kurgu ve renk düzenlemeli içerikler.</p>
                         <div class="mb-6">
-                            <span class="text-4xl font-extrabold text-slate-900">3.000</span>
+                            <span class="text-4xl font-extrabold text-slate-900">3.500</span>
                             <span class="text-slate-500 text-lg font-bold">₺</span>
                         </div>
                         
                         <ul class="space-y-4 mb-8 flex-1">
                             <li class="flex items-start gap-3 text-sm text-slate-800 font-semibold">
                                 <svg class="w-5 h-5 text-sky-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                                Profesyonel 4K Drone Video Çekimi (1-3 Dakika)
+                                Profesyonel 4K Drone Fotoğraf Çekimi
                             </li>
                             <li class="flex items-start gap-3 text-sm text-slate-800 font-semibold">
                                 <svg class="w-5 h-5 text-sky-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
-                                8-10 Adet Yüksek Çözünürlüklü 4K Fotoğraf
+                                8-10 Adet Kurgulanmış/Düzenlenmiş 4K Fotoğraf
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-slate-800 font-semibold">
+                                <svg class="w-5 h-5 text-sky-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                Çevre özellikleri 4K haritalandırma
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-slate-800 font-semibold">
+                                <svg class="w-5 h-5 text-sky-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                Sınırların dinamik Renkli Şeritlerle gösterimi
+                            </li>
+                            <li class="flex items-start gap-3 text-sm text-slate-800 font-semibold">
+                                <svg class="w-5 h-5 text-sky-500 flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="3" d="M5 13l4 4L19 7"></path></svg>
+                                Sosyal Medya İçin Profesyonel Kurgu & Montaj (4K)
                             </li>
                             <li class="flex items-start gap-3 text-xs text-slate-800 font-bold mt-4 bg-sky-50 p-2.5 rounded-lg border border-sky-100">
                                 <svg class="w-4 h-4 text-sky-600 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
@@ -289,7 +312,15 @@
                             </li>
                         </ul>
                         
-                        <a href="https://wa.me/905524010769?text=Merhaba,%203.000%20TL'lik%20Ham%20Çekim%20Paketi%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" class="w-full block text-center border-2 border-slate-800 hover:bg-slate-800 hover:text-white text-slate-800 py-3.5 text-[11px] font-extrabold uppercase tracking-widest transition-all rounded-lg mt-auto">Seç</a>
+                        <div class="flex flex-col gap-3 mt-auto">
+                            <!-- Basit Paket İçin Resim Lightbox Butonu -->
+                            <button onclick="openVideoLightbox('', 'images')" class="w-full flex items-center justify-center gap-2 text-center text-slate-600 hover:text-sky-600 py-3 text-[11px] font-black uppercase tracking-[0.2em] transition-all bg-white hover:bg-sky-50 rounded-lg border-2 border-slate-300 hover:border-sky-500 shadow-sm">
+                                <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"></path></svg>
+                                Örnek Projeyi Gör
+                            </button>
+
+                            <a href="https://wa.me/905524010769?text=Merhaba,%203.500%20TL'lik%20Basit%20Fotoğraf%2BKurgu%20Montaj%20Paketi%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" class="w-full block text-center border-2 border-slate-800 hover:bg-slate-800 hover:text-white text-slate-800 py-3.5 text-[11px] font-extrabold uppercase tracking-widest transition-all rounded-lg">Seç</a>
+                        </div>
                     </div>
 
                     <!-- 2. Paket: Standart Prodüksiyon -->
@@ -387,7 +418,6 @@
                                 Örnek Projeyi Gör
                             </button>
 
-                            <!-- 'Hemen Al' yazısı 'Seç' olarak güncellendi -->
                             <a href="https://wa.me/905524010769?text=Merhaba,%206.000%20TL'lik%20Drone%20Pro%20Paketi%20hakkında%20bilgi%20almak%20istiyorum." target="_blank" class="w-full block text-center bg-yellow-500 hover:bg-yellow-400 text-black py-3.5 text-[11px] font-extrabold uppercase tracking-widest transition-all rounded-lg shadow-[0_0_20px_rgba(234,179,8,0.3)]">Seç</a>
                         </div>
                     </div>
@@ -425,7 +455,7 @@
         </div>
     </div>
 
-    <!-- TAM EKRAN LİGHTBOX VİDEO OYNATICI -->
+    <!-- TAM EKRAN LİGHTBOX VİDEO VE RESİM OYNATICI (Güncellendi) -->
     <div id="videoLightbox" class="fixed inset-0 z-[200] hidden bg-black/95 backdrop-blur-sm flex flex-col items-center justify-center p-4 sm:p-8">
         
         <!-- Kapatma Butonu -->
@@ -433,8 +463,8 @@
             <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
         </button>
 
-        <!-- Video Çerçevesi (9:16 Dikey Mobil Format) -->
-        <div class="w-full max-w-sm aspect-[9/16] bg-slate-900 rounded-xl overflow-hidden relative shadow-2xl border border-white/10">
+        <!-- Medya Çerçevesi -->
+        <div class="w-full max-w-lg aspect-[16/9] sm:aspect-[9/16] lg:aspect-[16/9] bg-slate-900 rounded-xl overflow-hidden relative shadow-2xl border border-white/10" id="lightboxContainer">
             <!-- Yükleniyor Spinner'ı -->
             <div class="absolute inset-0 flex items-center justify-center text-white/50 z-0">
                 <svg class="animate-spin h-8 w-8" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
@@ -443,11 +473,28 @@
                 </svg>
             </div>
             
-            <!-- Dinamik İframe (Instagram bağlantıları için) -->
+            <!-- Dinamik İframe -->
             <iframe id="lightboxIframe" src="" class="w-full h-full border-0 relative z-10 hidden" allowfullscreen></iframe>
             
-            <!-- Dinamik HTML5 Video (Yerel MP4 için) -->
-            <video id="lightboxVideo" src="" class="w-full h-full relative z-10 hidden object-cover" controls playsinline></video>
+            <!-- Dinamik HTML5 Video -->
+            <video id="lightboxVideo" src="" class="w-full h-full relative z-10 hidden object-contain" controls playsinline></video>
+
+            <!-- Resim Slider (Basit Paket İçin) -->
+            <div id="imageSlider" class="w-full h-full relative z-10 hidden">
+                <img src="ornek-foto-1.jpg" class="slide active" alt="Örnek Fotoğraf 1">
+                <img src="ornek-foto-2.jpg" class="slide" alt="Örnek Fotoğraf 2">
+                <img src="4.jpg" class="slide" alt="Örnek Fotoğraf 3">
+                <img src="1.jpg" class="slide" alt="Örnek Fotoğraf 4">
+                <img src="5.jpg" class="slide" alt="Örnek Fotoğraf 5">
+                
+                <!-- Slider Kontrolleri -->
+                <button onclick="changeSlide(-1, event)" class="absolute left-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white p-2 rounded-full transition z-20">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path></svg>
+                </button>
+                <button onclick="changeSlide(1, event)" class="absolute right-2 top-1/2 -translate-y-1/2 bg-black/50 hover:bg-black/80 text-white p-2 rounded-full transition z-20">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                </button>
+            </div>
         </div>
     </div>
 
@@ -535,22 +582,46 @@
             document.body.style.overflow = '';
         }
 
-        // Tam Ekran Video Lightbox
+        // Resim Slider Mantığı
+        let currentSlide = 0;
+        const slides = document.querySelectorAll('.slide');
+        
+        function changeSlide(direction, event) {
+            if(event) event.stopPropagation(); // Lightbox'ın kapanmasını engelle
+            
+            slides[currentSlide].classList.remove('active');
+            currentSlide = (currentSlide + direction + slides.length) % slides.length;
+            slides[currentSlide].classList.add('active');
+        }
+
+        // Tam Ekran Medya Lightbox
         function openVideoLightbox(mediaUrl, type = 'iframe') {
             const lightbox = document.getElementById('videoLightbox');
             const iframe = document.getElementById('lightboxIframe');
             const video = document.getElementById('lightboxVideo');
+            const imageSlider = document.getElementById('imageSlider');
+            const container = document.getElementById('lightboxContainer');
             
+            // Tüm medya türlerini gizle
+            iframe.classList.add('hidden');
+            video.classList.add('hidden');
+            imageSlider.classList.add('hidden');
+            
+            // İlgili medyayı aç
             if (type === 'local') {
-                iframe.classList.add('hidden');
-                iframe.src = '';
+                container.className = "w-full max-w-sm aspect-[9/16] bg-slate-900 rounded-xl overflow-hidden relative shadow-2xl border border-white/10";
                 video.classList.remove('hidden');
                 video.src = mediaUrl;
                 video.play();
+            } else if (type === 'images') {
+                // Fotoğraflar genelde yatay (16:9) olduğu için kutuyu genişlet
+                container.className = "w-full max-w-5xl aspect-[16/9] bg-slate-900 rounded-xl overflow-hidden relative shadow-2xl border border-white/10";
+                imageSlider.classList.remove('hidden');
+                currentSlide = 0; // İlk slayta sıfırla
+                slides.forEach(s => s.classList.remove('active'));
+                if(slides.length > 0) slides[0].classList.add('active');
             } else {
-                video.classList.add('hidden');
-                video.pause();
-                video.src = '';
+                container.className = "w-full max-w-sm aspect-[9/16] bg-slate-900 rounded-xl overflow-hidden relative shadow-2xl border border-white/10";
                 iframe.classList.remove('hidden');
                 iframe.src = mediaUrl;
             }
