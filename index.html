@@ -67,28 +67,7 @@
         .slide { display: none; width: 100%; height: 100%; object-fit: contain; }
         .slide.active { display: block; }
         
-        .hero-bg {
-            background-image: url('Drone au-dessus du littoral résidentiel.png');
-            background-size: cover;
-            background-position: 85% center;
-            background-repeat: no-repeat;
-        }
-        @media (min-width: 768px) {
-            .hero-bg { background-position: center; }
-        }
 
-        /* Beyaz Kenar Çizgisi */
-        .text-outline {
-            text-shadow: 
-                -2px -2px 0 rgba(0,0,0,0.8),  
-                 2px -2px 0 rgba(0,0,0,0.8),
-                -2px  2px 0 rgba(0,0,0,0.8),
-                 2px  2px 0 rgba(0,0,0,0.8),
-                -2px  0   0 rgba(0,0,0,0.8),
-                 2px  0   0 rgba(0,0,0,0.8),
-                 0   -2px 0 rgba(0,0,0,0.8),
-                 0    2px 0 rgba(0,0,0,0.8);
-        }
     </style>
 </head>
 <body class="antialiased text-slate-900 bg-slate-50 selection:bg-sky-500 selection:text-white flex flex-col min-h-screen">
@@ -148,48 +127,42 @@
         </div>
     </div>
 
-    <section id="home" class="relative pt-28 pb-16 lg:pt-48 lg:pb-32 overflow-hidden flex items-center min-h-screen hero-bg">
-        <div class="absolute inset-0 bg-white/20 backdrop-blur-[1px] z-0"></div>
+    <section id="home" class="relative pt-28 pb-16 lg:pt-44 lg:pb-28 overflow-hidden flex items-center min-h-screen bg-gradient-to-b from-white to-sky-50/60">
+        <div class="max-w-7xl mx-auto px-5 sm:px-6 lg:px-8 relative z-10 w-full">
+            <div class="text-center max-w-3xl mx-auto reveal">
 
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10 w-full">
-            <div class="text-center max-w-5xl mx-auto reveal mt-4 sm:mt-0">
-                
-                <div class="inline-flex items-center gap-3 px-4 py-1.5 rounded-full border border-sky-200 bg-white/80 text-[10px] font-bold uppercase tracking-[0.2em] text-sky-600 mb-6 backdrop-blur-md shadow-sm">
-                    <span class="w-2 h-2 rounded-full bg-sky-500 animate-pulse"></span>
+                <p class="text-[11px] font-semibold uppercase tracking-[0.25em] text-sky-600 mb-6">
                     Profesyonel Havadan Prodüksiyon
-                </div>
-                
-                <!-- Yazı Rengi Tamamen Beyaz Yapıldı -->
-                <h1 class="text-4xl sm:text-6xl md:text-7xl lg:text-[5.5rem] font-black tracking-tight mb-6 leading-[1.1] text-white text-outline">
-                    EMLAK SEKTÖRÜNE <br/>
-                    <span class="text-sky-300">ÖZEL DRONE ÇEKİMLERİ</span>
+                </p>
+
+                <h1 class="text-4xl sm:text-5xl lg:text-6xl font-serif font-bold tracking-tight leading-[1.15] text-slate-900 mb-6">
+                    Emlak Sektörüne Özel<br/>
+                    <span class="text-sky-600">Drone Çekimleri</span>
                 </h1>
-                
-                <div class="max-w-3xl mx-auto mb-8 bg-white/50 backdrop-blur-md p-3 sm:p-5 rounded-2xl border border-white/60 shadow-[0_0_20px_rgba(255,255,255,0.4)]">
-                    <p class="text-xs sm:text-base text-slate-900 leading-relaxed font-bold drop-shadow-sm">
-                        Gayrimenkul portföyünüzü sergileyin, satışlarınızı hızlandıracak sinematik çekimler ve 4K detaylarla projelerinizi zirveye taşıyın.
-                    </p>
-                </div>
-                
-                <div class="flex flex-col sm:flex-row gap-4 justify-center">
-                    <a href="#paketler" onclick="openPaketlerModal(); gtag('event', 'buton_tiklama', {'buton_adi': 'Ana Sayfa - Paketleri İncele'});" class="px-10 py-5 sm:px-12 sm:py-6 bg-slate-900 text-white rounded-xl font-black text-sm sm:text-base uppercase tracking-[0.2em] hover:bg-sky-600 transition-all duration-300 shadow-2xl hover:shadow-[0_10px_40px_rgba(2,132,199,0.4)] hover:-translate-y-1 inline-flex items-center justify-center">
+
+                <p class="text-base sm:text-lg text-slate-600 leading-relaxed max-w-2xl mx-auto mb-10">
+                    Gayrimenkul portföyünüzü sergileyin; satışlarınızı hızlandıracak sinematik çekimler ve 4K detaylarla projelerinizi öne çıkarın.
+                </p>
+
+                <div class="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center">
+                    <a href="#paketler" onclick="openPaketlerModal(); gtag('event', 'buton_tiklama', {'buton_adi': 'Ana Sayfa - Paketleri İncele'});" class="px-8 py-4 bg-slate-900 text-white rounded-xl font-semibold text-sm uppercase tracking-[0.15em] hover:bg-sky-600 transition-colors duration-300 inline-flex items-center justify-center">
                         Paketleri İncele
                     </a>
-                    <a href="https://wa.me/905524010769?text=Merhaba,%20fiyat%20teklifi%20almak%20istiyorum." onclick="gtag('event', 'whatsapp_tiklama', {'konum': 'Hero Sekmesi - Teklif Al'});" target="_blank" class="px-10 py-5 sm:px-12 sm:py-6 bg-white border-2 border-transparent hover:border-slate-800 text-slate-800 rounded-xl font-black text-sm sm:text-base uppercase tracking-[0.2em] transition-all duration-300 flex items-center justify-center gap-2 shadow-xl hover:shadow-2xl hover:-translate-y-1">
+                    <a href="https://wa.me/905524010769?text=Merhaba,%20fiyat%20teklifi%20almak%20istiyorum." onclick="gtag('event', 'whatsapp_tiklama', {'konum': 'Hero Sekmesi - Teklif Al'});" target="_blank" class="px-8 py-4 border border-slate-300 text-slate-800 rounded-xl font-semibold text-sm uppercase tracking-[0.15em] hover:border-slate-900 hover:bg-white transition-colors duration-300 inline-flex items-center justify-center">
                         Teklif Al
                     </a>
                 </div>
             </div>
 
-            <div class="mt-16 sm:mt-32 flex flex-col sm:flex-row justify-center items-center gap-12 sm:gap-24 reveal border border-white/50 py-10 bg-white/60 backdrop-blur-md rounded-2xl max-w-4xl mx-auto shadow-lg">
+            <div class="mt-16 sm:mt-24 max-w-md mx-auto reveal border-t border-slate-200 pt-8 flex justify-center items-center gap-12 sm:gap-20">
                 <div class="text-center">
-                    <h3 class="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-2 tracking-tighter drop-shadow-sm">500<span class="text-sky-600">+</span></h3>
-                    <p class="text-slate-700 text-[10px] font-bold uppercase tracking-[0.25em]">Tamamlanan Proje</p>
+                    <p class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">500<span class="text-sky-600">+</span></p>
+                    <p class="text-slate-500 text-[10px] font-semibold uppercase tracking-[0.2em] mt-1">Tamamlanan Proje</p>
                 </div>
-                <div class="hidden sm:block w-[2px] h-16 bg-slate-300"></div>
+                <div class="w-px h-10 bg-slate-200"></div>
                 <div class="text-center">
-                    <h3 class="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-2 tracking-tighter drop-shadow-sm">4K<span class="text-sky-600">.</span></h3>
-                    <p class="text-slate-700 text-[10px] font-bold uppercase tracking-[0.25em]">Ultra HD Çözünürlük</p>
+                    <p class="text-3xl sm:text-4xl font-bold text-slate-900 tracking-tight">4K</p>
+                    <p class="text-slate-500 text-[10px] font-semibold uppercase tracking-[0.2em] mt-1">Ultra HD Çözünürlük</p>
                 </div>
             </div>
         </div>
