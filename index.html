@@ -97,8 +97,11 @@
         <div class="max-w-7xl mx-auto px-3 sm:px-6 lg:px-8">
             <div class="flex justify-between items-center py-1 sm:py-2 gap-3">
                 <!-- Mobil ve Web Logo Aralığı Ayarlandı -->
-                <a href="#home" class="flex-shrink-0 flex items-center group overflow-hidden py-1 max-w-[65%] sm:max-w-none">
-                    <img src="Logo Minimaliste Mavi Daire ve Wordmark_3.png" alt="MarmaraMedyaDrone Logo" class="h-12 sm:h-20 lg:h-[6.5rem] w-auto object-contain mix-blend-multiply group-hover:scale-[1.02] transition-transform duration-300 scale-125 sm:scale-100 origin-left">
+                <a href="#home" class="flex-1 min-w-0 sm:flex-none flex items-center group py-1">
+                    <!-- Mobil: boşlukları kırpılmış logo, hamburger ikonuna kadar genişler -->
+                    <img src="logo-mobil.png" alt="MarmaraMedyaDrone Logo" class="sm:hidden block w-full h-auto max-h-11 object-contain object-left mix-blend-multiply">
+                    <!-- Tablet / Masaüstü: orijinal logo -->
+                    <img src="Logo Minimaliste Mavi Daire ve Wordmark_3.png" alt="MarmaraMedyaDrone Logo" class="hidden sm:block sm:h-20 lg:h-[6.5rem] w-auto object-contain mix-blend-multiply group-hover:scale-[1.02] transition-transform duration-300 origin-left">
                 </a>
 
                 <!-- Hamburger Menu Butonu (Aralarında Mesafe Bırakıldı) -->
